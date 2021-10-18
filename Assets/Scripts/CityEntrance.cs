@@ -7,14 +7,14 @@ using UnityEngine.SceneManagement;
 public class CityEntrance : MonoBehaviour
 {
     [SerializeField] private GameObject entrancePopup;
-    public GameObject entrance;
-    public string sceneToLoad;
+    public GameObject player;
     public bool playerInRange;
+    string buildingName;
+    string sceneToLoad;
 
     void Start()
     {
-        //want to change to entrance but not working
-        entrance = GameObject.Find("Player");
+        player = GameObject.Find("Player");
         playerInRange = false;
         entrancePopup.SetActive(false);
     }
@@ -22,6 +22,12 @@ public class CityEntrance : MonoBehaviour
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && playerInRange == true){
+            if (buildingName == "Fractions_1"){
+                sceneToLoad = "Math World Scene";
+            }
+            else if (buildingName == "Fractions_2"){
+                sceneToLoad = "Science World Scene";
+            }
             SceneManager.LoadScene(sceneToLoad);
         }
     }
@@ -32,7 +38,9 @@ public class CityEntrance : MonoBehaviour
         if (other.CompareTag("Player") && !other.isTrigger){
             playerInRange = true;
             entrancePopup.SetActive(true);
-            entrancePopup.transform.position = entrance.transform.position + new Vector3(2,2,0);
+            entrancePopup.transform.position = player.transform.position + new Vector3(2,2,0);
+            buildingName = this.gameObject.name;
+            entrancePopup.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = buildingName;
         }
     }
 
