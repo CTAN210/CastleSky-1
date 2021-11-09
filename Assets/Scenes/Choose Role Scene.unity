@@ -774,7 +774,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 50
-  m_Text: 'C A S T L E S K Y '
+  m_Text: C A S T L E S K Y
 --- !u!222 &1035423598
 CanvasRenderer:
   m_ObjectHideFlags: 0
