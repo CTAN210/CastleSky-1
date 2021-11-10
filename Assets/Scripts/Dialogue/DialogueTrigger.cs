@@ -4,9 +4,49 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Dialogue dialogue;
+    public Animator animator_dialogue;
+    public Animator animator_guard;
 
-    public void TriggerDialogue(){
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+
+
+    public void OpenCountryEntrance(){
+        Debug.Log ("Starting Dialogue with player");
+        
+        try
+        {
+             animator_dialogue.SetBool("IsOpen", true);
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
+
     }
+
+    public void CloseCountryEntrance(){
+        try
+        {
+             animator_dialogue.SetBool("IsOpen",false);
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
+    }
+
+    public void CloseCountryGuard(){
+        try
+        {
+             animator_guard.SetBool("IsOpen",false);
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
+    }
+
+
 }
