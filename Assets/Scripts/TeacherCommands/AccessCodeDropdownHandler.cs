@@ -73,6 +73,11 @@ public class AccessCodeDropdownHandler : MonoBehaviour
     {
         socialMediaPopup.SetActive(false);
     }
+
+    public void shareWhatsapp()
+    {
+        Application.OpenURL("http://unity3d.com/");
+    }
 }
 
 
