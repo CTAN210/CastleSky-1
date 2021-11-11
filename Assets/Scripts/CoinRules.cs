@@ -46,6 +46,7 @@ public class CoinRules : MonoBehaviour
     public GameObject CoinPrefab;
     public GameObject bounds;
     public GameObject questionHolder;
+    public GameObject levelHolder;
     private float coinWidth, coinHeight;
     private int questionCounter = 0;
     private string raw;
@@ -56,6 +57,8 @@ public class CoinRules : MonoBehaviour
     public async void CoinSpawner()
     {   
         level = Int32.Parse(CityEntrance.Scenes.getParam("level"));
+        levelHolder.GetComponent<TextMeshPro>().text = "Level " + level.ToString();
+        levelHolder.GetComponent<TextMeshPro>().color = new Color(0, 0, 120, 225);
         if (question == null) {
            raw = await loadFromDb(level);
            question = raw.Split('-')[0].Split('|');

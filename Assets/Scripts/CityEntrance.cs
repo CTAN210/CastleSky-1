@@ -23,7 +23,7 @@ public class CityEntrance : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
 
         playerInRange = false;
-        Debug.Log(Scenes.getPosition("position"));
+        // Debug.Log(Scenes.getPosition("position"));
 
         if (Scenes.getPosition("position") != Vector3.zero)
         {
