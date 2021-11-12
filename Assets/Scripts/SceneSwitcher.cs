@@ -11,6 +11,7 @@ public class SceneSwitcher : MonoBehaviour
     public static string role;
 
 
+
     public void go_to_role_main_menu(){
         if ((role == "Student")){
             SceneManager.LoadScene("Student Choose World Scene");
@@ -22,7 +23,10 @@ public class SceneSwitcher : MonoBehaviour
     }
 
     public void load_next_scene (string scene_name){
-        SceneManager.LoadScene(scene_name);
+        string characterName = CityEntrance.Scenes.getParam("characterName");
+        Debug.Log("Hello this is the character: " + characterName);
+        
+        CityEntrance.Scenes.Load("Math World Scene", "characterName", characterName, "position", new Vector3(0,0,0));
     }
 
     public void which_role(){

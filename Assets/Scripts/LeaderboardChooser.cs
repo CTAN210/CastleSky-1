@@ -8,6 +8,9 @@ public class LeaderboardChooser : MonoBehaviour
     public GameObject Leaderboard_Country;
     public GameObject Leaderboard_Actual;
     public GameObject Player;
+
+    public static User user;
+
     // Start is called before the first frame update
     public void OpenLeaderboard_World(){
         try
@@ -19,6 +22,9 @@ public class LeaderboardChooser : MonoBehaviour
             //animator.SetBool("IsOpen", true);
         
             Debug.Log(Leaderboard_World.transform.position);
+
+            // string characterName = CityEntrance.Scenes.getParam("characterName");
+            // Debug.Log("This is Math World Scene Character: " + characterName);
         }
         catch (System.Exception)
         {   

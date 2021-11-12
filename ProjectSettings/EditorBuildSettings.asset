@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
+  - enabled: 1
+    path: Assets/Scenes/MatchingPairGameScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Choose Character Scene.unity
+    guid: 9436dc004149a66438d8653659a9bda3
   - enabled: 1
     path: Assets/Scenes/Main Scene.unity
     guid: 1a812dbc19b1ae84681852b5db94ce62
@@ -35,4 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene_Graph.unity
     guid: 58a9a54f5174bbc4aa12bda01d1287fb
+    path: Assets/Scenes/MathManiacScene.unity
+    guid: c789e2865fafb594897eec71d0682092
   m_configObjects: {}
