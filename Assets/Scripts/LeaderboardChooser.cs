@@ -8,6 +8,9 @@ public class LeaderboardChooser : MonoBehaviour
     public GameObject Leaderboard_Country;
     public GameObject Leaderboard_Actual;
     public GameObject Player;
+
+    public static User user;
+
     // Start is called before the first frame update
     public void OpenLeaderboard_World(){
         try
@@ -19,6 +22,8 @@ public class LeaderboardChooser : MonoBehaviour
             //animator.SetBool("IsOpen", true);
         
             Debug.Log(Leaderboard_World.transform.position);
+
+            // Debug.Log(user.UserId + user.UserName);
         }
         catch (System.Exception)
         {   
