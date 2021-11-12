@@ -46,20 +46,22 @@ public class LoginSubmitter : MonoBehaviour
             } else if (request.downloadHandler.text.Contains("Password not correct")) {
                 loginError.text = "Incorrect Password.";
             } else {
-                // JsonToken user = JsonConvert.DeserializeObject<User>(request.downloadHandler.text); 
-                // Debug.Log(user);
-                // if (user.RoleID == 1){
-                //     SceneManager.LoadScene("Student Choose World Scene");
-                // } // Student 
+                User user = JsonConvert.DeserializeObject<User>(request.downloadHandler.text); 
+                Debug.Log(user);
+                if (user.RoleID == 1){
+                    CityEntrance.Scenes.Load("Student Choose World Scene", "characterName", user.CharacterName, "position", new Vector3(0,0,0));
+                    // SceneManager.LoadScene("Student Choose World Scene");
+                } // Student 
 
-                // if (user.RoleID == 2){
-                //     SceneManager.LoadScene("Teacher Commands Scene");
+                if (user.RoleID == 2){
+                    SceneManager.LoadScene("Teacher Commands Scene");
 
-                // }
+                }
                 
             }
         }
     }
-
+    
+    
 
 }

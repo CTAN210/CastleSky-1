@@ -40,7 +40,7 @@ public class Registration : MonoBehaviour
         registrationForm.Add("password", password);
         registrationForm.Add("name", username);
         registrationForm.Add("RoleId", 1);
-        registrationForm.Add("ClassId", userClass);
+        registrationForm.Add("Class", userClass);
 
         string jsonform = JsonConvert.SerializeObject(registrationForm, Formatting.Indented);
 
@@ -52,7 +52,6 @@ public class Registration : MonoBehaviour
         // + ",\"RoleId\": 0" 
         // + ",\"Class\":" + userClass +"}";
 
-        Debug.Log(jsonform);
         StartCoroutine(Post("http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/register", jsonform));
     }
     
@@ -92,7 +91,10 @@ public class Registration : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success) {
             //TODO: Send UserId to next scene.
-            SceneManager.LoadScene("Choose Character Scene");
+            string idKey = request.downloadHandler.text.Split(',')[0];
+            string id = idKey.Split(':')[1];
+            Debug.Log(id);
+            CityEntrance.Scenes.Load("Choose Character Scene", "userId", id, "position" ,new Vector3(0,0,0));
         }
 
         if (request.downloadHandler.text.Contains("User.EmailAddress_UNIQUE")) {

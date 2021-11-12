@@ -43,6 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Geometry_Entrance_Dialogue
+    uniqueID: 4119234675
+    locked: 0
   - name: Player
     uniqueID: 1233634511
     locked: 0

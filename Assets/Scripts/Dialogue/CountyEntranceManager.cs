@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using UnityEngine.Networking;
+using System;
 public class CountyEntranceManager : MonoBehaviour
 {
     // public Animator animator_dialogue;
@@ -15,6 +18,8 @@ public class CountyEntranceManager : MonoBehaviour
     public GameObject species_guard;
     public GameObject accessCodeInputField;
     public GameObject Player;
+    public Animator PlayerAnimator;
+    public GameObject guard;
 
     [SerializeField]
     static bool geometryAccessStatus;
@@ -40,20 +45,11 @@ public class CountyEntranceManager : MonoBehaviour
             species_guard.SetActive(false);
         }
 
-    }
 
-    void Update(){
-        if(accessCodeInputField.GetComponent<InputField>().isFocused == true)
-        {
-            // Debug.Log ("input field in focus");
-            Player.GetComponent<PlayerMovement>().enabled = false;
-            
-        } else{
-            Player.GetComponent<PlayerMovement>().enabled = true;
-        }
-        
+
 
     }
+
 
     public void OpenCountryEntrance(GameObject specificDialogue){
         Debug.Log ("Starting Dialogue with player 1");
@@ -62,6 +58,7 @@ public class CountyEntranceManager : MonoBehaviour
         {
             Debug.Log("in try of open country entrance");
             specificDialogue.SetActive(true);
+            Player.GetComponent<PlayerMovement>().enabled = false;
         }
         catch (System.Exception)
         {
@@ -71,12 +68,76 @@ public class CountyEntranceManager : MonoBehaviour
 
     }
 
-    public void CloseCountryEntrance(GameObject specificDialogue){
+    public  void CloseCountryEntrance(GameObject specificDialogue){
         try
         {
-             specificDialogue.SetActive(false);
-             Debug.Log("reset input field");
-             accessCodeInputField.GetComponent<InputField>().text = "";
+            specificDialogue.SetActive(false);
+            Player.GetComponent<PlayerMovement>().enabled = true;
+            Debug.Log("reset input field");
+            // accessCodeInputField.GetComponent<InputField>().text = ""; 
+            specificDialogue.GetComponentInChildren<InputField>().text = ""; 
+            // GameObject.Find("Geometry_error_message").GetComponent<Text>().enabled = false;
+            // Text error_message = specificDialogue.GetComponent("Geometry_error_message").gameObject.GetComponent<Text>();
+            Text[] textComponents = specificDialogue.GetComponentsInChildren<Text>();
+            foreach(Text textComponent in textComponents) {
+                if (textComponent.name.Contains("Error_message")){
+                    textComponent.enabled = false;
+                }
+                Debug.Log(textComponent.name);
+                Debug.Log("test");
+            }
+            // error_message.enabled = false;
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
+    }
+
+    public async void accessCodeAuthentication(GameObject specificDialogue){
+        try
+        {
+            Debug.Log("reset input field");
+            string accessCode = specificDialogue.GetComponentInChildren<InputField>().text;
+            string dialogueName = specificDialogue.name;
+            
+            switch (dialogueName) {
+                case "Geometry_Entrance_Dialogue":
+                    Debug.Log("I am in Geomtry Dialogue");
+                    if(await checkAccessCode(accessCode,"Geometry")){
+                        Debug.Log("Geometry access code is successful");
+                        CloseCountryGuard(GameObject.Find("Geometry_Entrance_Guard"));
+                        specificDialogue.SetActive(false);
+                        Player.GetComponent<PlayerMovement>().enabled = true;
+                    } else {
+                         Text[] textComponents = specificDialogue.GetComponentsInChildren<Text>();
+                         foreach(Text textComponent in textComponents) {
+                            if (textComponent.name.Contains("Error_message")){
+                                textComponent.enabled = true;
+                            }
+                        }
+                    }
+                    
+                    break;
+
+                case "WholeNumber_Entrance_Dialogue":
+                    Debug.Log("I am in Whole Number Dialogue");
+                    if(await checkAccessCode(accessCode,"Whole_Numbers")){
+                        Debug.Log("Whole Numbers access code is successful");
+                        CloseCountryGuard(GameObject.Find("WholeNumber_Entrance_Guard"));
+                        specificDialogue.SetActive(false);
+                    } else {
+                         Text[] textComponents = specificDialogue.GetComponentsInChildren<Text>();
+                         foreach(Text textComponent in textComponents) {
+                            if (textComponent.name.Contains("Error_message")){
+                                textComponent.enabled = true;
+                            }
+                        }
+                    }
+                    
+                    break;
+            } 
         }
         catch (System.Exception)
         {
@@ -110,7 +171,39 @@ public class CountyEntranceManager : MonoBehaviour
         }
     }
 
-    
+    public async Task<bool> checkAccessCode(string accessCode, string country)
+    {
+         //Load from DB
+        var url = "ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getAccessCode/" + country;
+        Debug.Log(country);
+        using var www = UnityWebRequest.Get(url);
+        www.SetRequestHeader("Content-Type", "application/json");
+
+        var operation = www.SendWebRequest();
+
+        while(!operation.isDone) {
+            await Task.Yield();
+        }
+        
+        var jsonResponse = www.downloadHandler.text;
+        Debug.Log(jsonResponse);
+        if (www.result != UnityWebRequest.Result.Success) {
+            Debug.Log($"Failed: {www.error}");
+        }
+
+        try {
+            Debug.Log($"Success: {www.downloadHandler.text}");
+
+            if (jsonResponse == accessCode) {
+                return true;
+            }
+
+            return false;
+        } catch(Exception e) {
+            Debug.LogError($"Could not parse response: {jsonResponse}. {e.Message}");
+            return false;
+        }
+    }
 
 
 }

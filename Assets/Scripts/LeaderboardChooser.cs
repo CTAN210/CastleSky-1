@@ -23,7 +23,8 @@ public class LeaderboardChooser : MonoBehaviour
         
             Debug.Log(Leaderboard_World.transform.position);
 
-            // Debug.Log(user.UserId + user.UserName);
+            // string characterName = CityEntrance.Scenes.getParam("characterName");
+            // Debug.Log("This is Math World Scene Character: " + characterName);
         }
         catch (System.Exception)
         {   
