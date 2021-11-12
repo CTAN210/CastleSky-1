@@ -68,9 +68,8 @@ public class ButtonHandlers : MonoBehaviour
     public void shareWhatsapp(GameObject code)
     {
         accessCodeText = code.GetComponent<TMPro.TextMeshProUGUI>().text;
-        Debug.Log(AccessCodeDropdownHandler.worldNameText);
-        var worldText = AccessCodeDropdownHandler.worldNameText;
-        var countryText = AccessCodeDropdownHandler.countryNameText;
+        var worldText = AccessCodeDropdownHandler.selectedWorldFromAccessCode;
+        var countryText = AccessCodeDropdownHandler.selectedCountryFromAccessCode;
         Application.OpenURL(System.String.Format("https://wa.me/?text=Dear%20students,%20please%20use%20this%20code%20to%20access%20this%20world%20on%20CastleSky%0aWorld:%20{0}%0aCountry:%20{1}%0aCode:%20{2}",worldText,countryText,accessCodeText));
     }
 }

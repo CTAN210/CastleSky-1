@@ -8,24 +8,39 @@ public class LeaderBoardHandler : MonoBehaviour
     public GameObject LeaderboardActual;
     public TMPro.TMP_Dropdown worldDropdown;
     public TMPro.TMP_Dropdown countryDropdown;
-    public string selectedWorld;
-    public string selectedCountry;
+    public static string selectedWorldFromLeaderboard;
+    public static string selectedCountryFromLeaderboard;
+    public TMPro.TMP_Text TextBox;
 
-    void Start()
+    private string[] worldData; 
+    private string[] countryData;
+
+    async void Start()
     {
-        selectedWorld = "None";
-        selectedCountry = "None";
+        selectedWorldFromLeaderboard = "None";
+        selectedCountryFromLeaderboard = "None";
 
         worldDropdown = GameObject.Find("Dropdown-World").GetComponentInChildren<TMPro.TMP_Dropdown>();
         worldDropdown.options.Clear();
-        List<string> worldItems = new List<string> {"None","Math", "Science"};
+        worldData = await AccessCodeWorldInput.loadFromDB();
+        List<string> worldItems = new List<string>();
+        foreach(var item in worldData)
+        {
+            worldItems.Add(item);
+        }
         worldDropdown.AddOptions(worldItems);
         DropdownItemSelected(worldDropdown);
         worldDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(worldDropdown);});
+        worldDropdown.onValueChanged.AddListener(delegate {UpdateCountryDropdown(countryDropdown);});
 
         countryDropdown = GameObject.Find("Dropdown-Country").GetComponentInChildren<TMPro.TMP_Dropdown>();
         countryDropdown.options.Clear();
-        List<string> countryItems = new List<string> {"None"};
+        countryData = await LeaderboardCountryInput.loadFromDB();
+        List<string> countryItems = new List<string>();
+        foreach(var item in countryData)
+        {
+            countryItems.Add(item);
+        }
         countryDropdown.AddOptions(countryItems);
         DropdownItemSelected(countryDropdown);
         countryDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(countryDropdown);});
@@ -33,42 +48,35 @@ public class LeaderBoardHandler : MonoBehaviour
 
     void Update()
     {
-        if (selectedWorld == "Math")
+
+    }
+
+    async void UpdateCountryDropdown(TMPro.TMP_Dropdown dropdown)
+    {
+        TextBox = dropdown.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        dropdown.options.Clear();
+        string[] data = await LeaderboardCountryInput.loadFromDB();
+        List<string> items = new List<string>();
+        foreach(var item in data)
         {
-            countryDropdown = GameObject.Find("Dropdown-Country").GetComponentInChildren<TMPro.TMP_Dropdown>();
-            countryDropdown.options.Clear();
-            List<string> items = new List<string> {"None","WholeNumbers", "Geometry"};
-            countryDropdown.AddOptions(items);
+            items.Add(item);
         }
-        else if (selectedWorld == "Science")
-        {
-            countryDropdown = GameObject.Find("Dropdown-Country").GetComponentInChildren<TMPro.TMP_Dropdown>();
-            countryDropdown.options.Clear();
-            List<string> items = new List<string> {"None","Species", "Blood"};
-            countryDropdown.AddOptions(items);
-        }
+        dropdown.AddOptions(items);
+        TextBox.text = dropdown.options[dropdown.value].text;
     }
 
     void DropdownItemSelected(TMPro.TMP_Dropdown dropdown)
     {
-        var TextBox = dropdown.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        TextBox = dropdown.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         if (dropdown.name == "Dropdown-World")
         {
-            selectedWorld = dropdown.options[dropdown.value].text;
+            selectedWorldFromLeaderboard = dropdown.options[dropdown.value].text;
         }
         else if (dropdown.name == "Dropdown-Country")
         {
-            selectedCountry = dropdown.options[dropdown.value].text;
+            selectedCountryFromLeaderboard = dropdown.options[dropdown.value].text;
         }
-
-        if (dropdown.value == 0)
-        {
-            TextBox.text = "Please select an option";
-        }
-        else
-        {
-            TextBox.text = dropdown.options[dropdown.value].text;
-        }
+        TextBox.text = dropdown.options[dropdown.value].text;
     }
 
     public void CloseLeaderboard(){

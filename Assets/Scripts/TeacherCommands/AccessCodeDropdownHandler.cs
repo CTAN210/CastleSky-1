@@ -8,75 +8,77 @@ public class AccessCodeDropdownHandler : MonoBehaviour
     public TMPro.TMP_Dropdown worldDropdown;
     public TMPro.TMP_Dropdown countryDropdown;
     public TMPro.TMP_Dropdown classDropdown;
-    public static string worldNameText;
-    public static string countryNameText;
+    public static string selectedWorldFromAccessCode;
+    public static string selectedCountryFromAccessCode;
+    public TMPro.TMP_Text TextBox;
+
+    private string[] worldData; 
+    private string[] countryData;
+
     // Start is called before the first frame update
-    void Start()
+    async void Start()
     {
-        worldNameText = "None";
-        countryNameText = "None";
+        selectedWorldFromAccessCode = "None";
+        selectedCountryFromAccessCode = "None";
 
         worldDropdown = GameObject.Find("Dropdown-World").GetComponentInChildren<TMPro.TMP_Dropdown>();
         worldDropdown.options.Clear();
-        List<string> worldItems = new List<string> {"None","Math", "Science"};
+        worldData = await AccessCodeWorldInput.loadFromDB();
+        List<string> worldItems = new List<string>();
+        foreach(var item in worldData)
+        {
+            worldItems.Add(item);
+        }
         worldDropdown.AddOptions(worldItems);
         DropdownItemSelected(worldDropdown);
         worldDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(worldDropdown);});
+        worldDropdown.onValueChanged.AddListener(delegate {UpdateCountryDropdown(countryDropdown);});
 
         countryDropdown = GameObject.Find("Dropdown-Country").GetComponentInChildren<TMPro.TMP_Dropdown>();
         countryDropdown.options.Clear();
-        List<string> countryItems = new List<string> {"None","WholeNumbers", "Geometry"};
+        countryData = await AccessCodeCountryInput.loadFromDB();
+        List<string> countryItems = new List<string>();
+        foreach(var item in countryData)
+        {
+            countryItems.Add(item);
+        }
         countryDropdown.AddOptions(countryItems);
         DropdownItemSelected(countryDropdown);
         countryDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(countryDropdown);});
-
-        classDropdown = GameObject.Find("Dropdown-Class").GetComponentInChildren<TMPro.TMP_Dropdown>();
-        classDropdown.options.Clear();
-        List<string> classItems = new List<string> {"None","Class 1", "Class 2"};
-        classDropdown.AddOptions(classItems);
-        DropdownItemSelected(classDropdown);
-        classDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(classDropdown);});
     }
 
     void Update()
     {
-        if (worldNameText == "Math")
+
+    }
+
+    async void UpdateCountryDropdown(TMPro.TMP_Dropdown dropdown)
+    {
+        TextBox = dropdown.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        dropdown.options.Clear();
+        string[] data = await AccessCodeCountryInput.loadFromDB();
+        List<string> items = new List<string>();
+        foreach(var item in data)
         {
-            countryDropdown = GameObject.Find("Dropdown-Country").GetComponentInChildren<TMPro.TMP_Dropdown>();
-            countryDropdown.options.Clear();
-            List<string> items = new List<string> {"None","WholeNumbers", "Geometry"};
-            countryDropdown.AddOptions(items);
+            items.Add(item);
         }
-        else if (worldNameText == "Science")
-        {
-            countryDropdown = GameObject.Find("Dropdown-Country").GetComponentInChildren<TMPro.TMP_Dropdown>();
-            countryDropdown.options.Clear();
-            List<string> items = new List<string> {"None","Species", "Blood"};
-            countryDropdown.AddOptions(items);
-        }
+        dropdown.AddOptions(items);
+        TextBox.text = dropdown.options[dropdown.value].text;
     }
 
     void DropdownItemSelected(TMPro.TMP_Dropdown dropdown)
     {
-        var TextBox = dropdown.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        TextBox = dropdown.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         int index = dropdown.value;
         if (dropdown.name == "Dropdown-World")
         {
-            worldNameText = dropdown.options[index].text;
+            selectedWorldFromAccessCode = dropdown.options[index].text;
         }
         else if (dropdown.name == "Dropdown-Country")
         {
-            countryNameText = dropdown.options[index].text;
+            selectedCountryFromAccessCode = dropdown.options[index].text;
         }
-
-        if (index == 0)
-        {
-            TextBox.text = "Please select an option";
-        }
-        else
-        {
-            TextBox.text = dropdown.options[index].text;
-        }
+        TextBox.text = dropdown.options[index].text;
     }
 }
 
