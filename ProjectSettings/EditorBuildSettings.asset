@@ -38,6 +38,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene_Graph.unity
     guid: 58a9a54f5174bbc4aa12bda01d1287fb
-    path: Assets/Scenes/MathManiacScene.unity
-    guid: c789e2865fafb594897eec71d0682092
+  - enabled: 1
+    path: Assets/Scenes/MatchMeGame.unity
+    guid: 13c4b9a25e714484db0951847e444521
+  - enabled: 1
+    path: Assets/Scenes/MatchMeMenu.unity
+    guid: 808e4492450f3f84c859e099524ef107
   m_configObjects: {}

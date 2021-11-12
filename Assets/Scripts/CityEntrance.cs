@@ -175,17 +175,17 @@ public class CityEntrance : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 break;
 
             case "Species_1":
-                sceneToLoad = "MatchingPairGameScene";
+                sceneToLoad = "MatchMeMenu";
                 level = buildingName.Split('_')[1];
                 break;
 
             case "Species_2":
-                sceneToLoad = "MatchingPairGameScene";
+                sceneToLoad = "MatchMeMenu";
                 level = buildingName.Split('_')[1];
                 break;
 
             case "Species_3":
-                sceneToLoad = "MatchingPairGameScene";
+                sceneToLoad = "MatchMeMenu";
                 level = buildingName.Split('_')[1];
                 break;
 

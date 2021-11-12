@@ -17,7 +17,7 @@ public class AddButtons : MonoBehaviour
     {
         int numOfButtons;
         string level = CityEntrance.Scenes.getParam("level");
-        print("in awake of addBut: " + level);
+        // print("in awake of addBut: " + level);
 
         switch (level)
         {
