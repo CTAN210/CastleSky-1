@@ -66,6 +66,7 @@ public class CityEntrance : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             SceneManager.LoadScene(sceneName);
         }
 
+
         public static Dictionary<string, string> getSceneParameters()
         {
             return parameters;

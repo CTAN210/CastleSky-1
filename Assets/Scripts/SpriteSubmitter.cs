@@ -13,11 +13,11 @@ public class SpriteSubmitter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string userId = "32";
+        string userId = CityEntrance.Scenes.getParam("userId");
         string CharacterName =  selectedCharacter.GetComponent<Image>().sprite.name;
 
         Dictionary<string, dynamic> spriteUpdateForm = new Dictionary<string, dynamic>();
-        spriteUpdateForm.Add("SpriteFileName", CharacterName);
+        spriteUpdateForm.Add("CharacterName", CharacterName);
 
         string jsonform = JsonConvert.SerializeObject(spriteUpdateForm, Formatting.Indented);
         Debug.Log(jsonform);
@@ -27,7 +27,7 @@ public class SpriteSubmitter : MonoBehaviour
 
      IEnumerator<dynamic> Post(string url, string bodyJsonString)
     {
-        var request = UnityWebRequest.Put(url, bodyJsonString);
+        var request = UnityWebRequest.Put(url, bodyJsonString); 
         byte[] bodyRaw = Encoding.UTF8.GetBytes(bodyJsonString);
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
        // request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
