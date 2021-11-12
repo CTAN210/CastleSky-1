@@ -26,7 +26,7 @@ public class SceneSwitcher : MonoBehaviour
         string characterName = CityEntrance.Scenes.getParam("characterName");
         Debug.Log("Hello this is the character: " + characterName);
         
-        CityEntrance.Scenes.Load("Math World Scene", "characterName", characterName, "position", new Vector3(0,0,0));
+        CityEntrance.Scenes.Load(scene_name, "characterName", characterName, "position", new Vector3(0,0,0));
     }
 
     public void which_role(){
