@@ -70,6 +70,12 @@ public class ButtonHandlers : MonoBehaviour
         accessCodeText = code.GetComponent<TMPro.TextMeshProUGUI>().text;
         var worldText = AccessCodeDropdownHandler.selectedWorldFromAccessCode;
         var countryText = AccessCodeDropdownHandler.selectedCountryFromAccessCode;
-        Application.OpenURL(System.String.Format("https://wa.me/?text=Dear%20students,%20please%20use%20this%20code%20to%20access%20this%20world%20on%20CastleSky%0aWorld:%20{0}%0aCountry:%20{1}%0aCode:%20{2}",worldText,countryText,accessCodeText));
+        if (countryText == "Whole Numbers"){
+            Application.OpenURL(System.String.Format("https://wa.me/?text=Dear%20students,%20please%20use%20this%20code%20to%20access%20this%20world%20on%20CastleSky%0aWorld:%20{0}%0aCountry:%20{1}%20{2}%0aCode:%20{3}",worldText,countryText.Split(" "[0])[0],countryText.Split(" "[0])[1],accessCodeText));
+        }
+        else
+        {
+            Application.OpenURL(System.String.Format("https://wa.me/?text=Dear%20students,%20please%20use%20this%20code%20to%20access%20this%20world%20on%20CastleSky%0aWorld:%20{0}%0aCountry:%20{1}%0aCode:%20{2}",worldText,countryText,accessCodeText));
+        }
     }
 }
