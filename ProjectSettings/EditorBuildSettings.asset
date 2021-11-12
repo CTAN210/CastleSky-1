@@ -36,6 +36,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Teacher Commands Scene.unity
     guid: 6c6eed4cc8815604eb6b0b67f5179d03
   - enabled: 1
+    path: Assets/Scenes/GameScene_Graph.unity
+    guid: 58a9a54f5174bbc4aa12bda01d1287fb
     path: Assets/Scenes/MathManiacScene.unity
     guid: c789e2865fafb594897eec71d0682092
   m_configObjects: {}
