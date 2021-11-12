@@ -5,53 +5,70 @@ using UnityEngine.UI;
 
 public class AccessCodeDropdownHandler : MonoBehaviour
 {
-    public TMPro.TMP_Dropdown dropdown;
-    public static GameObject socialMediaPopup;
+    public TMPro.TMP_Dropdown worldDropdown;
+    public TMPro.TMP_Dropdown countryDropdown;
+    public TMPro.TMP_Dropdown classDropdown;
+    public static string worldNameText;
+    public static string countryNameText;
     // Start is called before the first frame update
     void Start()
     {
-        //var dropdown = transform.GetComponent<TMP_Dropdown>();
-        var componentName = this.gameObject.name;
-        dropdown = this.gameObject.GetComponentInChildren<TMPro.TMP_Dropdown>();
-        Debug.Log(componentName);
+        worldNameText = "None";
+        countryNameText = "None";
 
-        dropdown.options.Clear();
+        worldDropdown = GameObject.Find("Dropdown-World").GetComponentInChildren<TMPro.TMP_Dropdown>();
+        worldDropdown.options.Clear();
+        List<string> worldItems = new List<string> {"None","Math", "Science"};
+        worldDropdown.AddOptions(worldItems);
+        DropdownItemSelected(worldDropdown);
+        worldDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(worldDropdown);});
 
-        List<string> items = new List<string>();
-        if (componentName == "Dropdown-World")
+        countryDropdown = GameObject.Find("Dropdown-Country").GetComponentInChildren<TMPro.TMP_Dropdown>();
+        countryDropdown.options.Clear();
+        List<string> countryItems = new List<string> {"None","WholeNumbers", "Geometry"};
+        countryDropdown.AddOptions(countryItems);
+        DropdownItemSelected(countryDropdown);
+        countryDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(countryDropdown);});
+
+        classDropdown = GameObject.Find("Dropdown-Class").GetComponentInChildren<TMPro.TMP_Dropdown>();
+        classDropdown.options.Clear();
+        List<string> classItems = new List<string> {"None","Class 1", "Class 2"};
+        classDropdown.AddOptions(classItems);
+        DropdownItemSelected(classDropdown);
+        classDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(classDropdown);});
+    }
+
+    void Update()
+    {
+        if (worldNameText == "Math")
         {
-            items.Add("None");
-            items.Add("World 1");
-            items.Add("World 2");
+            countryDropdown = GameObject.Find("Dropdown-Country").GetComponentInChildren<TMPro.TMP_Dropdown>();
+            countryDropdown.options.Clear();
+            List<string> items = new List<string> {"None","WholeNumbers", "Geometry"};
+            countryDropdown.AddOptions(items);
         }
-        else if (componentName == "Dropdown-Country")
+        else if (worldNameText == "Science")
         {
-            items.Add("None");
-            items.Add("Country 1");
-            items.Add("Country 2");
+            countryDropdown = GameObject.Find("Dropdown-Country").GetComponentInChildren<TMPro.TMP_Dropdown>();
+            countryDropdown.options.Clear();
+            List<string> items = new List<string> {"None","Species", "Blood"};
+            countryDropdown.AddOptions(items);
         }
-        else if (componentName == "Dropdown-Class")
-        {
-            items.Add("None");
-            items.Add("Class 1");
-            items.Add("Class 2");
-        }
-
-        //Fill dropdown with items
-        foreach(var item in items)
-        {
-            dropdown.options.Add(new TMPro.TMP_Dropdown.OptionData() {text = item});
-        }
-
-        DropdownItemSelected(dropdown);
-
-        dropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(dropdown);});
     }
 
     void DropdownItemSelected(TMPro.TMP_Dropdown dropdown)
     {
         var TextBox = dropdown.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         int index = dropdown.value;
+        if (dropdown.name == "Dropdown-World")
+        {
+            worldNameText = dropdown.options[index].text;
+        }
+        else if (dropdown.name == "Dropdown-Country")
+        {
+            countryNameText = dropdown.options[index].text;
+        }
+
         if (index == 0)
         {
             TextBox.text = "Please select an option";
@@ -60,23 +77,6 @@ public class AccessCodeDropdownHandler : MonoBehaviour
         {
             TextBox.text = dropdown.options[index].text;
         }
-    }
-
-    public void generateButtonClicked(GameObject socialMedia)
-    {
-        ButtonHandlers.accessCode.SetActive(false);
-        socialMediaPopup = socialMedia;
-        socialMedia.SetActive(true);
-    }
-
-    public void backToCommand()
-    {
-        socialMediaPopup.SetActive(false);
-    }
-
-    public void shareWhatsapp()
-    {
-        Application.OpenURL("http://unity3d.com/");
     }
 }
 

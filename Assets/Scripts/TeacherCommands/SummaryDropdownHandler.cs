@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SummaryDropdownHandler : MonoBehaviour
 {
     public TMPro.TMP_Dropdown dropdown;
     public static GameObject reportPopup;
+    public static string summaryReportInputClass;
+    private string[] classData;
+
     // Start is called before the first frame update
-    void Start()
+    async void Start()
     {
         //var dropdown = transform.GetComponent<TMP_Dropdown>();
         var parentName = transform.parent.gameObject.name;
@@ -18,18 +22,12 @@ public class SummaryDropdownHandler : MonoBehaviour
         dropdown.options.Clear();
         dropdown.RefreshShownValue();
 
+        classData = await SummaryReportClassInput.loadFromDB();
+
         List<string> items = new List<string>();
-        if (parentName == "Summary - Input")
+        foreach(var item in classData)
         {
-            items.Add("None");
-            items.Add("Item 1");
-            items.Add("Item 2");
-        }
-        else if (parentName == "Summary - Generate Report")
-        {
-            items.Add("None");
-            items.Add("Choice 1");
-            items.Add("Choice 2");
+            items.Add(item);
         }
 
         //Fill dropdown with items
@@ -47,26 +45,17 @@ public class SummaryDropdownHandler : MonoBehaviour
     {
         var TextBox = dropdown.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         int index = dropdown.value;
-        if (index == 0)
-        {
-            TextBox.text = "Please select an option";
-        }
-        else
-        {
-            TextBox.text = dropdown.options[index].text;
-        }
-    }
-
-    public void generateButtonClicked(GameObject generateReport)
-    {
-        ButtonHandlers.summaryReport.SetActive(false);
-        reportPopup = generateReport;
-        generateReport.SetActive(true);
-    }
-
-    public void backToCommand()
-    {
-        reportPopup.SetActive(false);
+        TextBox.text = dropdown.options[index].text;
+        summaryReportInputClass = dropdown.options[index].text;
+        // if (index == 0)
+        // {
+        //     TextBox.text = "Please select an option";
+        // }
+        // else
+        // {
+        //     TextBox.text = dropdown.options[index].text;
+        //     summaryReportInputClass = dropdown.options[index].text;
+        // }
     }
 }
 
