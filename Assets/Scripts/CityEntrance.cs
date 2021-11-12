@@ -107,7 +107,6 @@ public class CityEntrance : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
 
 	void TaskOnClick(){
-        // sceneToLoad = "Science World Scene";
         switch(buildingName){
 
             case "Geometry_1":
@@ -172,6 +171,21 @@ public class CityEntrance : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
             case "WholeNumbers_10":
                 sceneToLoad = "MathManiacScene";
+                level = buildingName.Split('_')[1];
+                break;
+
+            case "Species_1":
+                sceneToLoad = "MatchingPairGameScene";
+                level = buildingName.Split('_')[1];
+                break;
+
+            case "Species_2":
+                sceneToLoad = "MatchingPairGameScene";
+                level = buildingName.Split('_')[1];
+                break;
+
+            case "Species_3":
+                sceneToLoad = "MatchingPairGameScene";
                 level = buildingName.Split('_')[1];
                 break;
 
