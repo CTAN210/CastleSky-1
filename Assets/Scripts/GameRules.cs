@@ -24,6 +24,7 @@ public class GameRules : MonoBehaviour
 
     public GameObject LevelCompleteUi;
     public GameObject LevelFailUi;
+    public ScoreSubmitter scoreSubmitter;
     private int score;
     private float multiplier;
     public void GameEnd(bool levelPassed)
@@ -44,6 +45,10 @@ public class GameRules : MonoBehaviour
                 if (CityEntrance.Scenes.getParam("level") == "10")
                 {
                     Debug.Log("Final Level- Player Score: " + score.ToString());
+                    string cityName = CityEntrance.Scenes.getParam("cityName");
+                    string userId = CityEntrance.Scenes.getParam("userId");
+                    scoreSubmitter.PostScoreToDB(userId, cityName, score);
+                    Debug.Log("Update Successful");
                 }   
 
         } 

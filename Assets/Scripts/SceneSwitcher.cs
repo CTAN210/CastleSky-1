@@ -12,9 +12,9 @@ public class SceneSwitcher : MonoBehaviour
 
     [SerializeField]
     static int intialiseFlag;
-    static string userId;
+    public static string userId;
     static string characterName;
-    static string userName;
+    public static string userName;
 
     public void go_to_role_main_menu(){
         if ((role == "Student")){
