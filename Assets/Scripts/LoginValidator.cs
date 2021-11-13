@@ -13,7 +13,7 @@ public class LoginValidator : MonoBehaviour
     public InputField inputPassword;
     public Text emailError;
     public Text passwordError;
-    public GameObject LoginSubmitter;
+    public LoginSubmitter LoginSubmitter;
     public void formValidate()
     {
         emailError.text = "";
@@ -28,7 +28,7 @@ public class LoginValidator : MonoBehaviour
 
         if(emailError.text == "" && passwordError.text == "")
         {
-            LoginSubmitter.SetActive(true);
+            LoginSubmitter.PostLoginForm();
         }
 
     } 

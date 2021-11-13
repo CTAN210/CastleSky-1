@@ -22,7 +22,7 @@ public class RegistrationFormValidator : MonoBehaviour
     public Text emailError;
     public Text usernameError;
     public Text passwordError;
-    public GameObject RegistrationSubmitter;
+    public Registration RegistrationSubmitter;
 
 
     public void formValidate()
@@ -41,7 +41,7 @@ public class RegistrationFormValidator : MonoBehaviour
 
         if(emailError.text == "" && usernameError.text == "" && passwordError.text == "")
         {
-            RegistrationSubmitter.SetActive(true);
+            RegistrationSubmitter.PostRegistationForm();
         }
 
     } 

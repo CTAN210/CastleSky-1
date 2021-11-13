@@ -11,29 +11,15 @@ public class Registration : MonoBehaviour
     public InputField inputEmail;
     public InputField inputUsername;
     public InputField inputPassword;
-    public InputField inputClass;
     public Text registrationError;
-
-    void Start(){
-        registrationError.text = "";
-        // string email = "\"calvinlow@gmail.com\"";
-        // string password = "\"ilovecock\"";
-        // string username = "\"cocksterhaha\"";
-        // string userClass = "\"5A\"";
-
-        // string email = "calvinlow7@gmail.com";
-        // string password = "password";
-        // string username = "calvinlow";
-        // string userClass = "5A";
+    public void PostRegistationForm()
+    {
+         registrationError.text = "";
 
         string email = inputEmail.text.ToString();
         string username = inputUsername.text.ToString();
         string password = inputPassword.text.ToString();
         string userClass = UserClassDropdown.selectedClass;
-
-        
-
-        // submitForm(registrationForm);
 
         Dictionary<string, dynamic> registrationForm = new Dictionary<string, dynamic>();
         registrationForm.Add("email", email);
@@ -46,38 +32,8 @@ public class Registration : MonoBehaviour
 
         Debug.Log(jsonform);
 
-        // string registrationForm = "{\"email\":"+ email 
-        // + ",\"password\":" + password 
-        // + ",\"name\":" + username
-        // + ",\"RoleId\": 0" 
-        // + ",\"Class\":" + userClass +"}";
-
         StartCoroutine(Post("http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/register", jsonform));
     }
-    
-
-    // IEnumerator<UnityWebRequestAsyncOperation> submitForm(string registrationForm = null)
-    // {
-    //     Debug.Log ("Yo");
-    //     string url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/register";
-
-    //     UnityWebRequest www = UnityWebRequest.Post(url, registrationForm);
-    //     www.SetRequestHeader("Content-Type", "application/json");
-    //     www.SetRequestHeader("email", "calvinlow@gmail.com");
-    //     www.SetRequestHeader("password", "ilovecock");
-        
-
-    //     yield return www.SendWebRequest();
-
-    //     if (www.result != UnityWebRequest.Result.Success) {
-    //         registrationError.text = www.error;
-    //          Debug.Log(www.error);
-    //     }
-    //     else {
-    //         Debug.Log("Form upload complete!");
-    //         //Change Scene based on user type!
-    //     }
-    // }
 
     IEnumerator<dynamic> Post(string url, string bodyJsonString)
     {

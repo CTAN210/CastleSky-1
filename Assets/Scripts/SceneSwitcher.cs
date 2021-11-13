@@ -10,7 +10,11 @@ public class SceneSwitcher : MonoBehaviour
     static string btn_clicked;
     public static string role;
 
-
+    [SerializeField]
+    static int intialiseFlag;
+    static string userId;
+    static string characterName;
+    static string userName;
 
     public void go_to_role_main_menu(){
         if ((role == "Student")){
@@ -23,10 +27,24 @@ public class SceneSwitcher : MonoBehaviour
     }
 
     public void load_next_scene (string scene_name){
-        string characterName = CityEntrance.Scenes.getParam("characterName");
-        Debug.Log("Hello this is the character: " + characterName);
         
-        CityEntrance.Scenes.Load(scene_name, "characterName", characterName, "position", new Vector3(0,0,0));
+        if (intialiseFlag.Equals(0)) {
+            characterName = CityEntrance.Scenes.getParam("characterName");
+            Debug.Log("Hello this is the character: " + characterName);
+            userId = CityEntrance.Scenes.getParam("userId");
+            userName = CityEntrance.Scenes.getParam("userName"); 
+            intialiseFlag++;
+
+        }
+        
+
+        Dictionary<string,string> userDetail = new Dictionary<string, string>{};
+        userDetail.Add("userId", userId);
+        userDetail.Add("characterName", characterName);
+        userDetail.Add("userName", userName);
+
+        CityEntrance.Scenes.Load(scene_name,  userDetail);
+        
     }
 
     public void which_role(){

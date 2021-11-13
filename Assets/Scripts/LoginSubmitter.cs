@@ -10,10 +10,9 @@ public class LoginSubmitter : MonoBehaviour
 {
     public InputField inputEmail;
     public InputField inputPassword;
-    public Text loginError;
+    public Text loginError;          
 
-    // Start is called before the first frame update
-    void Start()
+    public void PostLoginForm()
     {
         string email = inputEmail.text.ToString();
         string password = inputPassword.text.ToString();
@@ -26,6 +25,7 @@ public class LoginSubmitter : MonoBehaviour
 
         Debug.Log(jsonform);
         StartCoroutine(Post("http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/login", jsonform));
+    
     }
 
     IEnumerator<dynamic> Post(string url, string bodyJsonString)
@@ -50,8 +50,9 @@ public class LoginSubmitter : MonoBehaviour
                 Debug.Log(user);
                 if (user.RoleID == 1){
                     Dictionary<string,string> userDetail = new Dictionary<string, string>{};
-                    userDetail.Add("userClassId", user.ClassId.ToString());
+                    userDetail.Add("userId", user.UserId.ToString());
                     userDetail.Add("characterName", user.CharacterName);
+                    userDetail.Add("userName", user.UserName);
                     CityEntrance.Scenes.Load("Student Choose World Scene",  userDetail);
                     // SceneManager.LoadScene("Student Choose World Scene");
                 } // Student 

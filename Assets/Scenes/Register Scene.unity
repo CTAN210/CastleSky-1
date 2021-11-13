@@ -1075,7 +1075,7 @@ MonoBehaviour:
   emailError: {fileID: 524452919}
   usernameError: {fileID: 298992681}
   passwordError: {fileID: 812063296}
-  RegistrationSubmitter: {fileID: 1642841877}
+  RegistrationSubmitter: {fileID: 1642841878}
 --- !u!224 &567071810
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2543,7 +2543,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1913109472}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 575495780}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -3332,7 +3332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1642841878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3348,7 +3348,6 @@ MonoBehaviour:
   inputEmail: {fileID: 55676428}
   inputUsername: {fileID: 1913109472}
   inputPassword: {fileID: 1179739720}
-  inputClass: {fileID: 0}
   registrationError: {fileID: 587534675}
 --- !u!4 &1642841879
 Transform:

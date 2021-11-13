@@ -20,9 +20,9 @@ public class SpriteSubmitter : MonoBehaviour
         spriteUpdateForm.Add("CharacterName", CharacterName);
 
         string jsonform = JsonConvert.SerializeObject(spriteUpdateForm, Formatting.Indented);
-        Debug.Log(jsonform);
 
         StartCoroutine(Post("http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/users/" + userId, jsonform));
+
     }
 
      IEnumerator<dynamic> Post(string url, string bodyJsonString)
@@ -30,15 +30,13 @@ public class SpriteSubmitter : MonoBehaviour
         var request = UnityWebRequest.Put(url, bodyJsonString); 
         byte[] bodyRaw = Encoding.UTF8.GetBytes(bodyJsonString);
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
-       // request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
         yield return request.SendWebRequest();
         Debug.Log("Status Code: " + request.downloadHandler.text);
 
         if (request.result == UnityWebRequest.Result.Success) {
-            Debug.Log("Woohoo");
-            //TODO: Go where next?
-            // SceneManager.LoadScene("Choose Character Scene");
+
+            SceneManager.LoadScene("Login Scene");
         }
     }
 }

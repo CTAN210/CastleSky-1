@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AvatarManager : MonoBehaviour
 {
@@ -8,16 +9,28 @@ public class AvatarManager : MonoBehaviour
     public GameObject Player;
     public Animator PlayerAnimator;
 
+    public GameObject usernameText;
+
 
     [SerializeField]
     static int characterID;
+    static string actualuserName;
     // Start is called before the first frame update
     void Start()
     {
+        
         if (characterID.Equals(0)) {
             string characterName =  CityEntrance.Scenes.getParam("characterName");
+            string userName = CityEntrance.Scenes.getParam("userName");
+
+            actualuserName = userName;
 
             Debug.Log("Avatar Manager is saying: " + characterName);
+            Debug.Log("Username: " + userName);
+
+            
+
+           
             
             switch(characterName){
                 case "Warrior": 
@@ -46,6 +59,9 @@ public class AvatarManager : MonoBehaviour
 
         Debug.Log("Avatar Manager is saying: " + characterID);
         PlayerAnimator.SetInteger("AvatarID", characterID);
+        var text = usernameText.GetComponent<Text>();
+        text.text = actualuserName ;
+
     //  int userAvatarID = checkCharacterID();
     //  PlayerAnimator.SetInteger("AvatarID", User.);
 

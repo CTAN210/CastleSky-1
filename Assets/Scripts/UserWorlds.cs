@@ -13,10 +13,10 @@ public class UserWorlds
     public string Username { get; set; }
     public World[] Worlds { get; set; }
 
-   public static async Task<UserWorlds> loadUserWorlds(int userClassId)
+   public static async Task<string[]> loadUserWorlds(int userId)
     {
         //Load from DB
-        var url = "ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getClassWorlds/" + userClassId;
+        var url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getStudentWorlds/" + userId;
 
         using var www = UnityWebRequest.Get(url);
         www.SetRequestHeader("Content-Type", "application/json");
@@ -34,7 +34,7 @@ public class UserWorlds
         }
 
         try {
-            UserWorlds result = JsonConvert.DeserializeObject<UserWorlds>(jsonResponse);
+            string[] result = JsonConvert.DeserializeObject<string[]>(jsonResponse);
             Debug.Log($"Success: {www.downloadHandler.text}");
             return result;
         } catch(Exception e) {
