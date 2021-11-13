@@ -403,6 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdffe41f3e68437c98407ec6a67e869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summaryReportCanvas: {fileID: 0}
 --- !u!1 &100034982
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdffe41f3e68437c98407ec6a67e869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summaryReportCanvas: {fileID: 0}
 --- !u!114 &100034985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1319,6 +1321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdffe41f3e68437c98407ec6a67e869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summaryReportCanvas: {fileID: 0}
 --- !u!1 &178869430
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,6 +2109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdffe41f3e68437c98407ec6a67e869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summaryReportCanvas: {fileID: 0}
 --- !u!114 &344222743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3765,6 +3769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdffe41f3e68437c98407ec6a67e869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summaryReportCanvas: {fileID: 0}
 --- !u!1 &576500947
 GameObject:
   m_ObjectHideFlags: 0
@@ -6260,6 +6265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdffe41f3e68437c98407ec6a67e869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summaryReportCanvas: {fileID: 1243328049}
 --- !u!4 &968377592
 Transform:
   m_ObjectHideFlags: 0
@@ -6400,6 +6406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdffe41f3e68437c98407ec6a67e869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summaryReportCanvas: {fileID: 0}
 --- !u!114 &993993619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8623,6 +8630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdffe41f3e68437c98407ec6a67e869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summaryReportCanvas: {fileID: 0}
 --- !u!114 &1344476080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9037,6 +9045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdffe41f3e68437c98407ec6a67e869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summaryReportCanvas: {fileID: 0}
 --- !u!1 &1397175666
 GameObject:
   m_ObjectHideFlags: 0
@@ -12325,6 +12334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdffe41f3e68437c98407ec6a67e869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summaryReportCanvas: {fileID: 0}
 --- !u!1 &2024287749
 GameObject:
   m_ObjectHideFlags: 0

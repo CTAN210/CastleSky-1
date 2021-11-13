@@ -11,7 +11,15 @@ public class SummaryReportGenerated
 
      public static async Task<SummaryReportGenerated[]> loadFromDB()
      {
-        var url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getSummaryReport/" + Window_Graph.selectedCountryFromSummary + "/" + SummaryDropdownHandler.summaryReportInputClass;
+        var url = "";
+        if (Window_Graph.selectedCountryFromSummary == "Whole Numbers")
+        {
+            url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getSummaryReport/Whole_Numbers" + "/" + SummaryDropdownHandler.summaryReportInputClass;
+        }
+        else
+        {
+            url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getSummaryReport/" + Window_Graph.selectedCountryFromSummary + "/" + SummaryDropdownHandler.summaryReportInputClass;
+        }
 
         using var www = UnityWebRequest.Get(url);
         www.SetRequestHeader("Content-Type", "application/json");
@@ -29,6 +37,7 @@ public class SummaryReportGenerated
         }
 
         try {
+            Debug.Log(SummaryDropdownHandler.summaryReportInputClass);
             var result = JsonConvert.DeserializeObject<SummaryReportGenerated[]>(jsonResponse);
             Debug.Log($"Success: {www.downloadHandler.text}");
             return result;

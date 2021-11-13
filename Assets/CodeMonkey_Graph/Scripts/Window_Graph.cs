@@ -40,8 +40,7 @@ public class Window_Graph : MonoBehaviour {
     private async Task Awake() {
         instance = this;
 
-        selectedWorldFromSummary = "None";
-        selectedCountryFromSummary = "None";
+        
         textBox = GameObject.Find("textBox").GetComponent<TMPro.TMP_Text>();
 
         worldDropdown = GameObject.Find("dropdown-world").GetComponentInChildren<TMPro.TMP_Dropdown>();
@@ -56,6 +55,7 @@ public class Window_Graph : MonoBehaviour {
         DropdownItemSelected(worldDropdown);
         worldDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(worldDropdown);});
         worldDropdown.onValueChanged.AddListener(delegate {UpdateCountryDropdown(countryDropdown);});
+        selectedWorldFromSummary = worldItems[0];
 
         countryDropdown = GameObject.Find("dropdown-country").GetComponentInChildren<TMPro.TMP_Dropdown>();
         countryDropdown.options.Clear();
@@ -67,6 +67,9 @@ public class Window_Graph : MonoBehaviour {
         }
         countryDropdown.AddOptions(countryItems);
         DropdownItemSelected(countryDropdown);
+        selectedCountryFromSummary = countryItems[0];
+        Debug.Log(countryItems[0]);
+        
         countryDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(countryDropdown);});
 
         // Grab base objects references
@@ -84,15 +87,16 @@ public class Window_Graph : MonoBehaviour {
         IGraphVisual barChartVisual = new BarChartVisual(graphContainer, Color.white, .8f);
         
         HideTooltip();
+        updateGraph();
 
         // Set up base values
         // List<int> valueList = new List<int>() { 5, 98, 56, 45, 30, 22, 17, 15, 13, 17, 25, 37, 40, 36, 33 };
         // ShowGraph(valueList, barChartVisual, -1, (int _i) => "Day " + (_i + 1), (float _f) => "$" + Mathf.RoundToInt(_f));
     }
 
-    async void Update()
+    public async void updateGraph()
     {
-        IGraphVisual barChartVisual = new BarChartVisual(graphContainer, Color.white, .8f);
+         IGraphVisual barChartVisual = new BarChartVisual(graphContainer, Color.white, .8f);
 
         if (selectedWorldFromSummary != "None" && selectedCountryFromSummary != "None")
         {
@@ -108,7 +112,7 @@ public class Window_Graph : MonoBehaviour {
         }
     }
 
-    async void UpdateCountryDropdown(TMPro.TMP_Dropdown dropdown)
+    public async void UpdateCountryDropdown(TMPro.TMP_Dropdown dropdown)
     {
         dropdown.options.Clear();
         string[] data = await SummaryReportCountryInput.loadFromDB();
@@ -120,7 +124,7 @@ public class Window_Graph : MonoBehaviour {
         dropdown.AddOptions(items);
     }
 
-    void DropdownItemSelected(TMPro.TMP_Dropdown dropdown)
+    public void DropdownItemSelected(TMPro.TMP_Dropdown dropdown)
     {
         if (dropdown.name == "dropdown-world")
         {
@@ -129,6 +133,7 @@ public class Window_Graph : MonoBehaviour {
         else if (dropdown.name == "dropdown-country")
         {
             selectedCountryFromSummary = dropdown.options[dropdown.value].text;
+            updateGraph();
         }
     }
 
@@ -243,6 +248,7 @@ public class Window_Graph : MonoBehaviour {
         if (yDifference <= 0) {
             yDifference = 5f;
         }
+        // Set 
         yMaximum = yMaximum + (yDifference * 0.2f);
         yMinimum = yMinimum - (yDifference * 0.2f);
 
@@ -395,10 +401,6 @@ public class Window_Graph : MonoBehaviour {
             public void CleanUp() {
                 Destroy(barGameObject);
             }
-
-
         }
-
     }
-
 }

@@ -8,11 +8,24 @@ public class ButtonHandlers : MonoBehaviour
     public static GameObject summaryReport;
     public static GameObject accessCode;
     public static GameObject socialMediaPopup;
+    public GameObject summaryReportCanvas;
     public static string accessCodeText;
     // Start is called before the first frame update
     void Start()
     {
         accessCodeText = "None";
+        try{
+            Debug.Log("Trying to set active summaryreport");
+            var temp = CityEntrance.Scenes.getParam("object");
+            if (temp == "summary"){
+                Debug.Log("I received a summary temp yay");
+                summaryReportCanvas.SetActive(true);
+            }
+        }
+        catch{
+            throw;
+        }
+
     }
 
     // Update is called once per frame
@@ -33,7 +46,7 @@ public class ButtonHandlers : MonoBehaviour
 
     public void exportPNG()
     {
-        ScreenCapture.CaptureScreenshot("UnityScreenshot");
+        ScreenCapture.CaptureScreenshot("UnityScreenshot.png");
     }
 
     public void generateButtonClicked(string scene_name)
@@ -42,9 +55,15 @@ public class ButtonHandlers : MonoBehaviour
         SceneManager.LoadScene(scene_name);
     }
 
-    public void backToCommandFromSummaryReport(string scene_name)
+    public void backToCommandFromSummaryReport()
     {
-        SceneManager.LoadScene(scene_name);
+        SceneManager.LoadScene("Teacher Commands Scene");
+    }
+
+    public void backToClassSelection() {
+        Dictionary<string, string> details =  new Dictionary<string, string>{};
+        details.Add("object", "summary");
+        CityEntrance.Scenes.Load("Teacher Commands Scene", details);
     }
 
     public void generateAccessCode(GameObject accessCodePopup)
