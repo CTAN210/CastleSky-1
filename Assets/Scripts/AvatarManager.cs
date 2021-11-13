@@ -13,13 +13,13 @@ public class AvatarManager : MonoBehaviour
 
 
     [SerializeField]
-    static int characterID;
+   public static int characterID;
     static string actualuserName;
     // Start is called before the first frame update
     void Start()
     {
         
-        if (characterID.Equals(0)) {
+        if (characterID.Equals(0) || characterID == 0) {
             string characterName =  CityEntrance.Scenes.getParam("characterName");
             string userName = CityEntrance.Scenes.getParam("userName");
 

@@ -56,6 +56,7 @@ public class CoinRules : MonoBehaviour
     public async void CoinSpawner()
     {   
         level = Int32.Parse(CityEntrance.Scenes.getParam("level"));
+        
         Debug.Log("Level: "+ level);
         if (level == 10){
             levelHolder.GetComponent<TextMeshPro>().text = "Final Level" ; // Displays Final level 
@@ -109,7 +110,7 @@ public class CoinRules : MonoBehaviour
     public async Task<String> loadFromDb(int id)
     {
         //Load from DB
-        var url = "ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/questions";
+        var url = "ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/questions/" + id;
 
         using var www = UnityWebRequest.Get(url);
         www.SetRequestHeader("Content-Type", "application/json");
@@ -127,15 +128,13 @@ public class CoinRules : MonoBehaviour
         }
 
         try {
-            var result = JsonConvert.DeserializeObject<Question[]>(jsonResponse);
+            Question result = JsonConvert.DeserializeObject<Question>(jsonResponse);
             Debug.Log($"Success: {www.downloadHandler.text}");
 
-            for (int i = 0; i < result.Length; i++) {
-                if (result[i].id == id) {
-                    return result[i].Questions + "-" + result[i].Answers;
-                }
-            }
-            return null;
+            Debug.Log(result.Questions);
+            Debug.Log(result.Answers);
+
+            return result.Questions + '-' + result.Answers;
         } catch(Exception e) {
             Debug.LogError($"Could not parse response: {jsonResponse}. {e.Message}");
             return null;

@@ -28,7 +28,7 @@ public class SceneSwitcher : MonoBehaviour
 
     public void load_next_scene (string scene_name){
         
-        if (intialiseFlag.Equals(0)) {
+        if (intialiseFlag.Equals(0) || intialiseFlag == 0) {
             characterName = CityEntrance.Scenes.getParam("characterName");
             Debug.Log("Hello this is the character: " + characterName);
             userId = CityEntrance.Scenes.getParam("userId");
@@ -36,8 +36,13 @@ public class SceneSwitcher : MonoBehaviour
             intialiseFlag++;
 
         }
+        Debug.Log("Checking if Going to Login");
+        if (scene_name == "Login Scene") {
+            Debug.Log("Im going to logout");
+            AvatarManager.characterID = 0;
+            intialiseFlag = 0;
+        }
         
-
         Dictionary<string,string> userDetail = new Dictionary<string, string>{};
         userDetail.Add("userId", userId);
         userDetail.Add("characterName", characterName);
