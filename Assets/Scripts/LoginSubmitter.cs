@@ -49,7 +49,10 @@ public class LoginSubmitter : MonoBehaviour
                 User user = JsonConvert.DeserializeObject<User>(request.downloadHandler.text); 
                 Debug.Log(user);
                 if (user.RoleID == 1){
-                    CityEntrance.Scenes.Load("Student Choose World Scene", "characterName", user.CharacterName, "position", new Vector3(0,0,0));
+                    Dictionary<string,string> userDetail = new Dictionary<string, string>{};
+                    userDetail.Add("userClassId", user.ClassId.ToString());
+                    userDetail.Add("characterName", user.CharacterName);
+                    CityEntrance.Scenes.Load("Student Choose World Scene",  userDetail);
                     // SceneManager.LoadScene("Student Choose World Scene");
                 } // Student 
 

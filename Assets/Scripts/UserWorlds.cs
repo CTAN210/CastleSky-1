@@ -13,10 +13,10 @@ public class UserWorlds
     public string Username { get; set; }
     public World[] Worlds { get; set; }
 
-   public static async Task<UserWorlds> loadUserWorlds(int id)
+   public static async Task<UserWorlds> loadUserWorlds(int userClassId)
     {
         //Load from DB
-        var url = "ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getUserWorlds/" + id;
+        var url = "ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getClassWorlds/" + userClassId;
 
         using var www = UnityWebRequest.Get(url);
         www.SetRequestHeader("Content-Type", "application/json");
