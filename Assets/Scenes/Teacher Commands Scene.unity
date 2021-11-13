@@ -4758,7 +4758,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 705478128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c3ece3f6fffbe04884a1390c6cad6ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f6190bc928d146f387ea5eba4ba2ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Users: {fileID: 4073312802607382854, guid: 0dee891669a78924e9f8645d0b9f9231, type: 3}
@@ -6064,6 +6064,7 @@ MonoBehaviour:
   worldDropdown: {fileID: 0}
   countryDropdown: {fileID: 0}
   TextBox: {fileID: 0}
+  result: {fileID: 0}
 --- !u!1 &891913209
 GameObject:
   m_ObjectHideFlags: 0
@@ -7669,7 +7670,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A123
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 8b29aaa3eec7468097ff07adfcf29ac9, type: 2}
@@ -7991,8 +7992,8 @@ RectTransform:
   m_Father: {fileID: 1058207409}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.52760005}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.5276}
+  m_AnchorMax: {x: 1, y: 0.9999999}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8853,6 +8854,7 @@ GameObject:
   - component: {fileID: 1348329942}
   - component: {fileID: 1348329944}
   - component: {fileID: 1348329943}
+  - component: {fileID: 1348329945}
   m_Layer: 5
   m_Name: LeaderboardActual
   m_TagString: Untagged
@@ -8921,6 +8923,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348329941}
   m_CullTransparentMesh: 1
+--- !u!114 &1348329945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348329941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf64ba3326c7c4ed2b549c9064ac67b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1349355656
 GameObject:
   m_ObjectHideFlags: 0
@@ -10816,6 +10830,7 @@ MonoBehaviour:
   worldDropdown: {fileID: 0}
   countryDropdown: {fileID: 0}
   TextBox: {fileID: 0}
+  result: {fileID: 0}
 --- !u!1 &1759334440
 GameObject:
   m_ObjectHideFlags: 0

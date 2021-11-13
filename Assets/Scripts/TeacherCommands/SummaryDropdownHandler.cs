@@ -47,15 +47,6 @@ public class SummaryDropdownHandler : MonoBehaviour
         int index = dropdown.value;
         TextBox.text = dropdown.options[index].text;
         summaryReportInputClass = dropdown.options[index].text;
-        // if (index == 0)
-        // {
-        //     TextBox.text = "Please select an option";
-        // }
-        // else
-        // {
-        //     TextBox.text = dropdown.options[index].text;
-        //     summaryReportInputClass = dropdown.options[index].text;
-        // }
     }
 }
 

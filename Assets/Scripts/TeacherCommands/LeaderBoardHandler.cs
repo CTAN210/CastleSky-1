@@ -11,6 +11,7 @@ public class LeaderBoardHandler : MonoBehaviour
     public static string selectedWorldFromLeaderboard;
     public static string selectedCountryFromLeaderboard;
     public TMPro.TMP_Text TextBox;
+    public LeaderboardResults result;
 
     private string[] worldData; 
     private string[] countryData;
