@@ -39,6 +39,9 @@ public class SceneSwitcher : MonoBehaviour
         Debug.Log("Checking if Going to Login");
         if (scene_name == "Login Scene") {
             Debug.Log("Im going to logout");
+            CountyEntranceManager.geometryAccessStatus = false;
+            CountyEntranceManager.wholenumberAccessStatus = false;
+            CountyEntranceManager.speciesAccessStatus = false;
             AvatarManager.characterID = 0;
             intialiseFlag = 0;
         }

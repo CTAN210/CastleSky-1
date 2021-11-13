@@ -22,9 +22,9 @@ public class CountyEntranceManager : MonoBehaviour
     public GameObject guard;
 
     [SerializeField]
-    static bool geometryAccessStatus;
-    static bool wholenumberAccessStatus;
-    static bool speciesAccessStatus;
+    public static bool geometryAccessStatus;
+    public static bool wholenumberAccessStatus;
+    public static bool speciesAccessStatus;
 
 
 

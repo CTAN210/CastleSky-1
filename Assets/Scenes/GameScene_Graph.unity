@@ -3567,7 +3567,7 @@ Transform:
   m_GameObject: {fileID: 1402375686}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.28, y: 1.5360003, z: 1}
   m_Children: []
   m_Father: {fileID: 1575375740}
   m_RootOrder: 2
@@ -3613,15 +3613,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -100
-  m_Sprite: {fileID: 21300000, guid: 89f3d7d5f6ae2d248acdf86e3881d599, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ee6b40681f6dfff4180069a1048d62e2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
-  m_Size: {x: 1500, y: 1000}
+  m_DrawMode: 0
+  m_Size: {x: 20.48, y: 15.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1489094713
@@ -3919,9 +3919,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldDropdown: {fileID: 0}
   countryDropdown: {fileID: 0}
-  selectedWorld: 
-  selectedCountry: 
   textBox: {fileID: 0}
+  studentData: []
 --- !u!1 &1633394522
 GameObject:
   m_ObjectHideFlags: 0

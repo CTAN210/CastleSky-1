@@ -11,15 +11,8 @@ public class LeaderboardResultsGenerator
 
      public static async Task<LeaderboardResultsGenerator[]> loadFromDB()
      {
-        var url = "";
-        if (LeaderBoardHandler.selectedCountryFromLeaderboard == "Whole Numbers")
-        {
-            url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getLeaderBoardByCountry/Whole_Numbers";
-        }
-        else
-        {
-            url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getLeaderBoardByCountry/" + LeaderBoardHandler.selectedCountryFromLeaderboard;
-        }
+        var url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getLeaderBoardByCountry/" + LeaderBoardHandler.selectedCountryFromLeaderboard;
+        
         
         using var www = UnityWebRequest.Get(url);
         www.SetRequestHeader("Content-Type", "application/json");
@@ -45,4 +38,4 @@ public class LeaderboardResultsGenerator
             return null;
         }
     }
-}
+    }

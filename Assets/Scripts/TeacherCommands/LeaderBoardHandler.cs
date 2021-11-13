@@ -49,7 +49,7 @@ public class LeaderBoardHandler : MonoBehaviour
 
     void Update()
     {
-
+         DropdownItemSelected(countryDropdown);
     }
 
     async void UpdateCountryDropdown(TMPro.TMP_Dropdown dropdown)
@@ -61,7 +61,7 @@ public class LeaderBoardHandler : MonoBehaviour
         foreach(var item in data)
         {
             items.Add(item);
-        }
+        };
         dropdown.AddOptions(items);
         TextBox.text = dropdown.options[dropdown.value].text;
     }
@@ -76,6 +76,7 @@ public class LeaderBoardHandler : MonoBehaviour
         else if (dropdown.name == "Dropdown-Country")
         {
             selectedCountryFromLeaderboard = dropdown.options[dropdown.value].text;
+            // Debug.Log(dropdown.options[dropdown.value].text);
         }
         TextBox.text = dropdown.options[dropdown.value].text;
     }

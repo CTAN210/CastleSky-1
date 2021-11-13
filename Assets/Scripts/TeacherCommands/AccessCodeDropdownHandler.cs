@@ -49,7 +49,7 @@ public class AccessCodeDropdownHandler : MonoBehaviour
 
     void Update()
     {
-
+        DropdownItemSelected(countryDropdown);
     }
 
     async void UpdateCountryDropdown(TMPro.TMP_Dropdown dropdown)

@@ -39,10 +39,8 @@ public class LoginSubmitter : MonoBehaviour
         Debug.Log("Status Code: " + request.downloadHandler.text);
 
         if (request.result == UnityWebRequest.Result.Success) {
-            Debug.Log("HooWoo");
-
             if (request.downloadHandler.text.Contains("User not found")) {
-                loginError.text = "The email entered does have an account registered.";
+                loginError.text = "The email entered does not have an account registered.";
             } else if (request.downloadHandler.text.Contains("Password not correct")) {
                 loginError.text = "Incorrect Password.";
             } else {

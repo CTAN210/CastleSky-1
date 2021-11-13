@@ -15,12 +15,8 @@ public class LeaderboardUsersForTeachers : MonoBehaviour
     Image third_place_image;
     public Transform Parent;
     // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    void Update()
+    public void populateLeaderboard()
     {
         var list = new List<KeyValuePair<string,int>>();
 

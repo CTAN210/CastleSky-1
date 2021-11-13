@@ -15,10 +15,15 @@ public class AccessCodeGenerated
         {
             url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getAccessCode/Whole_Numbers";
         }
-        else
+        else if (AccessCodeDropdownHandler.selectedCountryFromAccessCode == "Geometry")
         {
-            url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getAccessCode/" + AccessCodeDropdownHandler.selectedCountryFromAccessCode;
+            url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getAccessCode/Geometry";
         }
+        else if (AccessCodeDropdownHandler.selectedCountryFromAccessCode == "Species")
+        {
+            url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getAccessCode/Species";
+        }
+
 
         using var www = UnityWebRequest.Get(url);
         www.SetRequestHeader("Content-Type", "application/json");

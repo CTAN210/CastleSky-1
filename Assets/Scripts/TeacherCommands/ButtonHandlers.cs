@@ -38,7 +38,7 @@ public class ButtonHandlers : MonoBehaviour
 
     public void generateButtonClicked(string scene_name)
     {
-        summaryReport.SetActive(false);
+        
         SceneManager.LoadScene(scene_name);
     }
 
@@ -78,4 +78,13 @@ public class ButtonHandlers : MonoBehaviour
             Application.OpenURL(System.String.Format("https://wa.me/?text=Dear%20students,%20please%20use%20this%20code%20to%20access%20this%20world%20on%20CastleSky%0aWorld:%20{0}%0aCountry:%20{1}%0aCode:%20{2}",worldText,countryText,accessCodeText));
         }
     }
+
+    public void openCanvas(GameObject specificCanvas){
+        specificCanvas.SetActive(true);
+    }
+
+    public void closeCanvas(GameObject specificCanvas){
+        specificCanvas.SetActive(false);
+    }
+
 }
