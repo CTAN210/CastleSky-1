@@ -16,8 +16,7 @@ public class LeaderboardResults : MonoBehaviour
     Image first_place_image;
     Image second_place_image;
     Image third_place_image;
-    public Transform Parent;
-
+    public RectTransform Parent;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +42,12 @@ public class LeaderboardResults : MonoBehaviour
 
     public void populateLeaderboard()
     {
+        for (int i = 0; i < Parent.childCount; i++) {
+
+            string name = Parent.GetChild(i).name;
+            Destroy(GameObject.Find(name));
+        }
+
         var list = new List<KeyValuePair<string,int>>();
 
         if (LeaderboardResults.studentDataForLeaderboard != null && LeaderboardResults.scoreDataForLeaderboard != null)
@@ -67,7 +72,8 @@ public class LeaderboardResults : MonoBehaviour
             a.name = i.ToString() + "(Text)";
 
             TextMeshProUGUI myText = a.GetComponent<TextMeshProUGUI>();
-            myText.text = list.ElementAt(i).ToString() + " " + (i+1) + " Place";
+            // myText.text = list.ElementAt(i).ToString() + " " + (i+1) + " Place";
+            myText.text = (i+1)  +  ". \t" + list.ElementAt(i).ToString().Split(',')[0].Split('[')[1] + " \t" + list.ElementAt(i).ToString().Split(',')[1].Split(']')[0];
         
         }
 
@@ -91,6 +97,9 @@ public class LeaderboardResults : MonoBehaviour
             third_place_image = third_place.GetComponent<Image>();
             third_place_image.color = new Color32(205,127,50,255);
         }
+
+
+        Parent.sizeDelta = new Vector2(500, 108*list.Count);
 
 
     }

@@ -49,6 +49,7 @@ public class LeaderBoardHandler : MonoBehaviour
 
     void Update()
     {
+        if (countryDropdown.enabled)
          DropdownItemSelected(countryDropdown);
     }
 
@@ -63,10 +64,15 @@ public class LeaderBoardHandler : MonoBehaviour
             items.Add(item);
         };
         dropdown.AddOptions(items);
-        TextBox.text = dropdown.options[dropdown.value].text;
+        // TextBox.text = dropdown.options[dropdown.value].text;
+        if (items.Count == 1) {
+            TextBox.text = dropdown.options[0].text;
+        } else {
+            TextBox.text = dropdown.options[dropdown.value].text;
+        }
     }
 
-    void DropdownItemSelected(TMPro.TMP_Dropdown dropdown)
+    public void DropdownItemSelected(TMPro.TMP_Dropdown dropdown)
     {
         TextBox = dropdown.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         if (dropdown.name == "Dropdown-World")
@@ -75,7 +81,12 @@ public class LeaderBoardHandler : MonoBehaviour
         }
         else if (dropdown.name == "Dropdown-Country")
         {
-            selectedCountryFromLeaderboard = dropdown.options[dropdown.value].text;
+            if (dropdown.options.Count == 1) {
+                selectedCountryFromLeaderboard = dropdown.options[0].text;
+            } else {
+                selectedCountryFromLeaderboard = dropdown.options[dropdown.value].text;
+            }
+           
             // Debug.Log(dropdown.options[dropdown.value].text);
         }
         TextBox.text = dropdown.options[dropdown.value].text;
