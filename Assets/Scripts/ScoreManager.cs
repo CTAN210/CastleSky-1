@@ -20,7 +20,11 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         guessText.text = guess.ToString() + " Guess(es)"; // displays guessCount
-        levelText.text = "Level " + CityEntrance.Scenes.getParam("level"); // Displays level 
+        if (CityEntrance.Scenes.getParam("level") == GameController.finalLevel.ToString()){
+            levelText.text = "Final Level " ; // Displays Final level 
+        } else {
+            levelText.text = "Level " + CityEntrance.Scenes.getParam("level"); // Displays level 
+        }
 
     }
 

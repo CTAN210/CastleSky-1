@@ -13,6 +13,11 @@ public class GameOverScreen : MonoBehaviour
     public void Setup(int userScore)
     {
         gameObject.SetActive(true); // to show the screen
+        // Send score to DB if level = 3 
+        if (CityEntrance.Scenes.getParam("level") == GameController.finalLevel.ToString()){
+            Debug.Log("Final Level- Player Score: " + userScore);
+        }
+
 
         guessText.text = userScore.ToString() + " Points";
     }

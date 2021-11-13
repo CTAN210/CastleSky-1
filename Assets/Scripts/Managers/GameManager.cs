@@ -6,12 +6,15 @@ using System;
 
 public class GameManager : MonoBehaviour {
 	public static GameManager instance;
+	public static GameManager GUIinstance;
 
 	public GameObject faderObj;
 	public GameObject InstructionsPanel;
 	public Image faderImg;
 	public bool gameOver = false;
 	public static int level;
+	public static int finalLevel;
+	public Text levelTxt;
 	public float fadeSpeed = .02f;
 
 	private Color fadeTransparency = new Color(0, 0, 0, .04f);
@@ -20,8 +23,14 @@ public class GameManager : MonoBehaviour {
 
 	void Awake() {
 		// Only 1 Game Manager can exist at a time
+		finalLevel = 3;
 		if (instance == null) {
 			DontDestroyOnLoad(gameObject);
+			if (CityEntrance.Scenes.getParam("level") == finalLevel.ToString()){
+            	levelTxt.text = "Final Level" ; // Displays Final level 
+			} else {
+				levelTxt.text = "Level " + CityEntrance.Scenes.getParam("level"); // Displays level 
+			}
 			instance = GetComponent<GameManager>();
 			SceneManager.sceneLoaded += OnLevelFinishedLoading;
 		} else {
@@ -31,6 +40,11 @@ public class GameManager : MonoBehaviour {
 
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
+			if (CityEntrance.Scenes.getParam("level") == finalLevel.ToString()){
+            	levelTxt.text = "Final Level" ; // Displays Final level 
+			} else {
+				levelTxt.text = "Level " + CityEntrance.Scenes.getParam("level"); // Displays level 
+			}
 			ReturnToMenu();
 		}
 	}
@@ -40,7 +54,8 @@ public class GameManager : MonoBehaviour {
 		// level = Int32.Parse(sceneName.Split('-')[1]);
 		level = Int32.Parse(CityEntrance.Scenes.getParam("level"));
 		sceneName = sceneName.Split('-')[0];
-		print(level);
+		Debug.Log(level);
+		Debug.Log(finalLevel);
 		print(sceneName);
 		instance.StartCoroutine(Load(sceneName));
 		instance.StartCoroutine(FadeOut(instance.faderObj, instance.faderImg));
