@@ -48,11 +48,11 @@ public class LeaderBoardHandler : MonoBehaviour
         countryDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(countryDropdown);});
     }
 
-    /*void Update()
+    void Update()
     {
         if (countryDropdown.enabled)
          DropdownItemSelected(countryDropdown);
-    }*/
+    }
 
     async void UpdateCountryDropdown(TMPro.TMP_Dropdown dropdown)
     {
@@ -95,12 +95,16 @@ public class LeaderBoardHandler : MonoBehaviour
     }
     public void OpenLeaderboard(){ 
         Time.timeScale = 0;
-        player.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+        if (player != null ) {
+            player.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+        }
         LeaderboardInput.SetActive(true);
     }
     public void CloseLeaderboard(){
         Time.timeScale = 1;
-        player.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+        if (player != null ) {
+            player.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+        }
         LeaderboardInput.SetActive(false);
     }
 
@@ -111,7 +115,9 @@ public class LeaderBoardHandler : MonoBehaviour
 
     public void CloseLeaderboardActual(){
         Time.timeScale = 1;
-        player.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+        if (player != null ) {
+            player.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+        }
         LeaderboardActual.SetActive(false);
     }
 
