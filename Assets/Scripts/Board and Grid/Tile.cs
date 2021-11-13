@@ -82,28 +82,28 @@ public class Tile : MonoBehaviour {
         GameObject adjacentTile;
         switch(direction){
             case "up": // Y+1
-                Debug.Log("x,y: " + (gridPositionX).ToString() + ", "+ (gridPositionY+1).ToString());
+                // Debug.Log("x,y: " + (gridPositionX).ToString() + ", "+ (gridPositionY+1).ToString());
                 if ((gridPositionY+1) > 7){
                     return null;
                 }
                 adjacentTile = BoardManager.tiles[gridPositionX,gridPositionY+1];
                 return adjacentTile;               
             case "down":
-                Debug.Log("x,y: " + (gridPositionX).ToString() + ", "+ (gridPositionY-1).ToString());
+                // Debug.Log("x,y: " + (gridPositionX).ToString() + ", "+ (gridPositionY-1).ToString());
                 if ((gridPositionY-1) < 0){
                     return null;
                 }
                 adjacentTile = BoardManager.tiles[gridPositionX,gridPositionY-1];
                 return adjacentTile;    
             case "left":
-                Debug.Log("x,y: " + (gridPositionX-1).ToString() + ", "+ gridPositionY.ToString());
+                // Debug.Log("x,y: " + (gridPositionX-1).ToString() + ", "+ gridPositionY.ToString());
                 if ((gridPositionX-1) < 0){
                     return null;
                 }
                 adjacentTile = BoardManager.tiles[gridPositionX-1,gridPositionY];
                 return adjacentTile;            
             case "right": //X+1
-                Debug.Log("x,y: " + (gridPositionX+1).ToString() + ", "+ (gridPositionY).ToString());
+                // Debug.Log("x,y: " + (gridPositionX+1).ToString() + ", "+ (gridPositionY).ToString());
                 if ((gridPositionX+1) > 7){
                     return null;
                 }

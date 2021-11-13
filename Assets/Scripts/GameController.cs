@@ -13,11 +13,10 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     public Sprite bgImage;
-
+    [SerializeField]
+    public static int finalLevel;
     public GameOverScreen GameOverScreen;
-
     public HelpScreen HelpScreen;
-    
     public Sprite[] puzzles; 
     public Sprite[] puzzles1;
 
@@ -39,10 +38,12 @@ public class GameController : MonoBehaviour
     {
         puzzles = Resources.LoadAll<Sprite>("Sprites/1");
         puzzles1 = Resources.LoadAll<Sprite>("Sprites/1");
+        
     }
 
     void Start()
     {
+        finalLevel = 3;
         GetButtons();
         AddListeners();
         AddGamePuzzles();
@@ -70,13 +71,10 @@ public class GameController : MonoBehaviour
 
         if (puzzlesCount < (buttonCount/2) )
         {
-            /*Debug.Log("in Loop");*/
             int numOfRepeats = (buttonCount / 2) - puzzlesCount;
             tempSprites = puzzles;
-            Debug.Log("TS COUNT: " + tempSprites.Count());
             IEnumerable<UnityEngine.Sprite>  repeatedSprites = puzzles.OrderBy(x => rnd.Next()).Take(numOfRepeats);
             tempSprites = tempSprites.Concat(repeatedSprites);
-            Debug.Log("TS COUNT: "+ tempSprites.Count());
         } else
         {
             tempSprites = puzzles.OrderBy(x => rnd.Next()).Take(buttonCount / 2); 
@@ -102,7 +100,7 @@ public class GameController : MonoBehaviour
     public void pickAPuzzle()
     {
         string name = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name;
-        Debug.Log("You have click " + name);
+        // Debug.Log("You have click " + name);
 
         if (!firstGuess)
         {
@@ -143,7 +141,7 @@ public class GameController : MonoBehaviour
                 Debug.Log("Match!");
             } else
             {
-                Debug.Log("Not Match.");
+                // Debug.Log("Not Match.");
             }
 
         }
@@ -231,7 +229,7 @@ public class GameController : MonoBehaviour
                 break;
         }
         
-        int excessGuessPenalty = (countGuesses-gameGuesses) * 5; // Deduct 5 pints for each 
+        int excessGuessPenalty = (countGuesses-gameGuesses) * 3; 
         maxScore = maxGuesses*20;
 
         playerPoints = ((maxScore - excessGuessPenalty)/maxScore) * 100;

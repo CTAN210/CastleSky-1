@@ -9,6 +9,8 @@ public class GUIManager : MonoBehaviour {
 	public Text yourScoreTxt;
 	public Text highScoreTxt;
 
+	public Text levelTxt;
+
 	public Text scoreTxt;
 	public Text moveCounterTxt;
 
@@ -20,10 +22,11 @@ public class GUIManager : MonoBehaviour {
         return score;
     }
 
-    set {
-        score = value;
-        scoreTxt.text = score.ToString();
-    }
+		set {
+			score = value;
+			scoreTxt.text = score.ToString();
+			
+		}
 	}
 
 	public int MoveCounter {
@@ -46,6 +49,11 @@ public class GUIManager : MonoBehaviour {
 	void Awake() {
 		moveCounter = 10; // change this number to set how many moves the player can make
 		moveCounterTxt.text = moveCounter.ToString();
+		if (GameManager.level == GameManager.finalLevel){
+            levelTxt.text = "Final Level" ; // Displays Final level 
+        } else {
+            levelTxt.text = "Level " + GameManager.level; // Displays level 
+        }
 		instance = GetComponent<GUIManager>();
 	}
 
@@ -63,6 +71,11 @@ public class GUIManager : MonoBehaviour {
 		}
 
 		yourScoreTxt.text = score.ToString();
+
+		// Send score to DB if final level
+		if (GameManager.level == GameManager.finalLevel){
+            Debug.Log("Final Level- Player Score: " + score);
+        }
 	}
 
 	private IEnumerator WaitForShifting() {

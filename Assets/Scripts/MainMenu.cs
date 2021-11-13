@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
@@ -9,10 +10,17 @@ public class MainMenu : MonoBehaviour
     public GameObject Snake;
     public CoinRules coinRules;
     public GameObject InstructionUi;
+    public Text levelTxt;
     // Start is called before the first frame update
     void Start()
     {   
         Time.timeScale = 0;
+
+        if (CityEntrance.Scenes.getParam("level") == "10"){
+                levelTxt.text = "Final Level" ; // Displays Final level 
+			} else {
+                levelTxt.text = "Level " + CityEntrance.Scenes.getParam("level"); // Displays level 
+			}
     }
 
     // Update is called once per frame
@@ -32,7 +40,6 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         //redirect to main game
-        // Debug.Log("Quit Game");
         Vector3 playerPositionVector = new Vector3();
         playerPositionVector = CityEntrance.Scenes.getPosition("position");
         CityEntrance.Scenes.Load("Math World Scene","level","0","position",playerPositionVector);

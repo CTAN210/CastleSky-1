@@ -55,11 +55,18 @@ public class CoinRules : MonoBehaviour
 
     public async void CoinSpawner()
     {   
-        level = Int32.Parse(CityEntrance.Scenes.getParam("level"));
-        levelHolder.GetComponent<TextMeshPro>().text = "Level " + level.ToString();
+        level = Int32.Parse(CityEntrance.Scenes.getParam("level"));ddddd
+        Debug.Log("Level: "+ level);
+        if (level == 10){
+            levelHolder.GetComponent<TextMeshPro>().text = "Final Level" ; // Displays Final level 
+			} else {
+                levelHolder.GetComponent<TextMeshPro>().text = "Level " + level.ToString(); // Displays level 
+			}
+        // levelHolder.GetComponent<TextMeshPro>().text = "Level " + level.ToString();
         levelHolder.GetComponent<TextMeshPro>().color = new Color(0, 0, 120, 225);
         if (question == null) {
            raw = await loadFromDb(level);
+           Debug.Log("Level: "+ level);
            question = raw.Split('-')[0].Split('|');
            answer = raw.Split('-')[1].Split('|');
            Time.timeScale = 1;

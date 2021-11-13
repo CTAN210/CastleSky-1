@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Test : MonoBehaviour
 {
 	public GameObject instructionsImg;
@@ -9,11 +9,17 @@ public class Test : MonoBehaviour
     public GameObject level_2;
     public GameObject level_3;
     public GameObject OkButton;
+    // public Text levelTxt;
 
     // Start is called before the first frame update
     void Start()
     {
-        //instructionsImg = GameObject.Find("Instructions");
+        // //instructionsImg = GameObject.Find("Instructions");
+        // if (GameManager.level == GameManager.finalLevel){
+        //     levelTxt.text = "Final Level" ; // Displays Final level 
+        // } else {
+        //     levelTxt.text = "Level " + GameManager.level; // Displays level 
+        // }
     }
 
     // Update is called once per frame
@@ -42,6 +48,7 @@ public class Test : MonoBehaviour
                 instructionsImg = level_1;
                 break;
         }
+        GameObject.Find("GUIManagerCanvas").transform.Find("Level Label").gameObject.SetActive(false);
         instructionsImg.gameObject.SetActive(true);
         OkButton.gameObject.SetActive(true);
     }
@@ -68,6 +75,7 @@ public class Test : MonoBehaviour
         }
         instructionsImg.gameObject.SetActive(false);
         OkButton.gameObject.SetActive(false);
+        GameObject.Find("GUIManagerCanvas").transform.Find("Level Label").gameObject.SetActive(true);
     }
 
 }
