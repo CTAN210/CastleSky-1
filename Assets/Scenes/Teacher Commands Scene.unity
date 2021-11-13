@@ -2413,7 +2413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -195.99994, y: 76}
+  m_AnchoredPosition: {x: -195.99988, y: 76}
   m_SizeDelta: {x: -980, y: -670}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &419189452
@@ -4046,7 +4046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -187.99994, y: -1}
+  m_AnchoredPosition: {x: -187.99988, y: -1}
   m_SizeDelta: {x: -1120, y: -690}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &612569899
@@ -5722,7 +5722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &883707055
 Transform:
   m_ObjectHideFlags: 0
@@ -7404,7 +7404,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ABC123
+  m_Text: 123ABC
 --- !u!222 &1176887939
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8551,7 +8551,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Users: {fileID: 4073312802607382854, guid: 0dee891669a78924e9f8645d0b9f9231, type: 3}
-  ImageBox: {fileID: 4079089003194764475, guid: 2e902b642b37c194a988a2da71b8d6e1, type: 3}
+  ImageBox: {fileID: 4079089003194764475, guid: 2e902b642b37c194a988a2da71b8d6e1,
+    type: 3}
   Parent: {fileID: 705478129}
 --- !u!1 &1355318620
 GameObject:
@@ -9078,6 +9079,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 221853449}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 221853453}
+        m_TargetAssemblyTypeName: AccessCodeSocialMedia, Assembly-CSharp
+        m_MethodName: loadFromDB
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11981,8 +11994,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678866d31322b4864b7660c6edaaa80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldDropdown: {fileID: 0}
-  countryDropdown: {fileID: 0}
+  worldDropdown: {fileID: 612569900}
+  countryDropdown: {fileID: 2024287752}
   classDropdown: {fileID: 0}
   TextBox: {fileID: 0}
 --- !u!114 &1975908350
@@ -12340,7 +12353,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 197.99994, y: 78}
+  m_AnchoredPosition: {x: 197.99988, y: 78}
   m_SizeDelta: {x: -980, y: -670}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2057320268

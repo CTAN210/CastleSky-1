@@ -15,14 +15,21 @@ public class AccessCodeSocialMedia : MonoBehaviour
         generatedCodeFromDB = await AccessCodeGenerated.loadFromDB();
         
         text.text = generatedCodeFromDB[0];
-        // generatedCodeObject.text = generatedCodeFromDB[0];
+        // generatedCodeObject.text = generatedCodeFromDB[0];   
     }
 
     // Update is called once per frame
-    async void Update()
+/*    async void Update()
      {
          generatedCodeFromDB = await AccessCodeGenerated.loadFromDB();
          var text = generatedCodeObject.GetComponent<Text>();
          text.text = generatedCodeFromDB[0];
+    }*/
+
+    public async void loadFromDB()
+    {
+        generatedCodeFromDB = await AccessCodeGenerated.loadFromDB();
+        var text = generatedCodeObject.GetComponent<Text>();
+        text.text = generatedCodeFromDB[0];
     }
 }

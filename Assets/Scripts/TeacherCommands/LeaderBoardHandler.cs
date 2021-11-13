@@ -48,11 +48,11 @@ public class LeaderBoardHandler : MonoBehaviour
         countryDropdown.onValueChanged.AddListener(delegate {DropdownItemSelected(countryDropdown);});
     }
 
-    void Update()
+    /*void Update()
     {
-        try{DropdownItemSelected(countryDropdown);}
-        catch{throw;}
-    }
+        if (countryDropdown.enabled)
+         DropdownItemSelected(countryDropdown);
+    }*/
 
     async void UpdateCountryDropdown(TMPro.TMP_Dropdown dropdown)
     {

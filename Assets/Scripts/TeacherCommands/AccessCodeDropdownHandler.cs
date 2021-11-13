@@ -76,7 +76,14 @@ public class AccessCodeDropdownHandler : MonoBehaviour
         }
         else if (dropdown.name == "Dropdown-Country")
         {
-            selectedCountryFromAccessCode = dropdown.options[index].text;
+            if (dropdown.options.Count == 1)
+            {
+                selectedCountryFromAccessCode = dropdown.options[0].text;
+            } else
+            {
+                selectedCountryFromAccessCode = dropdown.options[index].text;
+            }
+            
         }
         TextBox.text = dropdown.options[index].text;
     }
