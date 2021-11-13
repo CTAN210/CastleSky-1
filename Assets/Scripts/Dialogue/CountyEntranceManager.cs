@@ -101,6 +101,7 @@ public class CountyEntranceManager : MonoBehaviour
             Debug.Log("reset input field");
             string accessCode = specificDialogue.GetComponentInChildren<InputField>().text;
             string dialogueName = specificDialogue.name;
+            Debug.Log("accessCode: " + accessCode);
             
             switch (dialogueName) {
                 case "Geometry_Entrance_Dialogue":
@@ -127,6 +128,7 @@ public class CountyEntranceManager : MonoBehaviour
                         Debug.Log("Whole Numbers access code is successful");
                         CloseCountryGuard(GameObject.Find("WholeNumber_Entrance_Guard"));
                         specificDialogue.SetActive(false);
+                        Player.GetComponent<PlayerMovement>().enabled = true;
                     } else {
                          Text[] textComponents = specificDialogue.GetComponentsInChildren<Text>();
                          foreach(Text textComponent in textComponents) {
@@ -136,6 +138,23 @@ public class CountyEntranceManager : MonoBehaviour
                         }
                     }
                     
+                    break;
+                
+                case "Species_Entrance_Dialogue":
+                    Debug.Log("I am in Species Dialogue");
+                    if(await checkAccessCode(accessCode,"Species")){ // Change to Species URL
+                        Debug.Log("Species access code is successful");
+                        CloseCountryGuard(GameObject.Find("Species_Entrance_Guard"));
+                        specificDialogue.SetActive(false);
+                        Player.GetComponent<PlayerMovement>().enabled = true;
+                    } else {
+                         Text[] textComponents = specificDialogue.GetComponentsInChildren<Text>();
+                         foreach(Text textComponent in textComponents) {
+                            if (textComponent.name.Contains("Error_message")){
+                                textComponent.enabled = true;
+                            }
+                        }
+                    }
                     break;
             } 
         }
@@ -149,7 +168,9 @@ public class CountyEntranceManager : MonoBehaviour
     public void CloseCountryGuard(GameObject specificGuard){
         try
         {
-            //  animator_guard.SetBool("IsOpen",false);
+            //  animator_guard.SetBool("IsOpen",false);\\
+            Debug.Log("in close country guard");
+
             specificGuard.SetActive(false);
             if (specificGuard == geometry_guard){  
                 geometryAccessStatus = true;
@@ -160,7 +181,7 @@ public class CountyEntranceManager : MonoBehaviour
                 specificGuard.SetActive(false);
             }
             else if (specificGuard == species_guard){
-                wholenumberAccessStatus = true;
+                speciesAccessStatus = true;
                 specificGuard.SetActive(false);
             }
         }
@@ -186,6 +207,9 @@ public class CountyEntranceManager : MonoBehaviour
         }
         
         var jsonResponse = www.downloadHandler.text;
+        string[] jsonResponseArray =  JsonConvert.DeserializeObject<string[]>(jsonResponse);
+        jsonResponse = jsonResponseArray[0];
+        
         Debug.Log(jsonResponse);
         if (www.result != UnityWebRequest.Result.Success) {
             Debug.Log($"Failed: {www.error}");
@@ -193,6 +217,7 @@ public class CountyEntranceManager : MonoBehaviour
 
         try {
             Debug.Log($"Success: {www.downloadHandler.text}");
+            
 
             if (jsonResponse == accessCode) {
                 return true;
