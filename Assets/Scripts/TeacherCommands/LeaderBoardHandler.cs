@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LeaderBoardHandler : MonoBehaviour
 {    
+    public GameObject player;
     public GameObject LeaderboardInput;
     public GameObject LeaderboardActual;
     public TMPro.TMP_Dropdown worldDropdown;
@@ -49,8 +50,8 @@ public class LeaderBoardHandler : MonoBehaviour
 
     void Update()
     {
-        if (countryDropdown.enabled)
-         DropdownItemSelected(countryDropdown);
+        try{DropdownItemSelected(countryDropdown);}
+        catch{throw;}
     }
 
     async void UpdateCountryDropdown(TMPro.TMP_Dropdown dropdown)
@@ -74,6 +75,7 @@ public class LeaderBoardHandler : MonoBehaviour
 
     public void DropdownItemSelected(TMPro.TMP_Dropdown dropdown)
     {
+        
         TextBox = dropdown.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         if (dropdown.name == "Dropdown-World")
         {
@@ -91,8 +93,14 @@ public class LeaderBoardHandler : MonoBehaviour
         }
         TextBox.text = dropdown.options[dropdown.value].text;
     }
-
+    public void OpenLeaderboard(){ 
+        Time.timeScale = 0;
+        player.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+        LeaderboardInput.SetActive(true);
+    }
     public void CloseLeaderboard(){
+        Time.timeScale = 1;
+        player.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
         LeaderboardInput.SetActive(false);
     }
 
@@ -102,6 +110,8 @@ public class LeaderBoardHandler : MonoBehaviour
     }
 
     public void CloseLeaderboardActual(){
+        Time.timeScale = 1;
+        player.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
         LeaderboardActual.SetActive(false);
     }
 

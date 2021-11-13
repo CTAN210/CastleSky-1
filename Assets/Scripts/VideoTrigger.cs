@@ -8,6 +8,7 @@ public class VideoTrigger : MonoBehaviour
 {
     public GameObject VideoBox;
     public GameObject VideoPlayer;
+    public GameObject VideoNPC;
     public GameObject Player;
 
     public void OpenVideo(){
@@ -23,7 +24,11 @@ public class VideoTrigger : MonoBehaviour
 
             videoPlayer.Play();
 
+            Player.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
 
+            VideoNPC.SetActive(false);
+
+            Time.timeScale = 0;
         }
         catch (System.Exception)
         {
@@ -35,11 +40,20 @@ public class VideoTrigger : MonoBehaviour
     public void CloseVideo(){
         try
         {
+            
+
+
              VideoBox.transform.position = VideoBox.transform.position + new Vector3(3000,0,0);
 
              var videoPlayer = VideoPlayer.GetComponent<VideoPlayer>();
 
              videoPlayer.Stop();
+
+            Time.timeScale = 1;
+             
+            Player.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+
+            VideoNPC.SetActive(true);
         }
         catch (System.Exception)
         {
