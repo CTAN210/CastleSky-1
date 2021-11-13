@@ -37,7 +37,6 @@ public class CityEntrance : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         //     Player.transform.position = GameOverScreen.Scenes.getPosition("position");
         // }
 
-        
     }
 
     public void Update()
@@ -241,7 +240,6 @@ public class CityEntrance : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         Debug.Log("Player has left entrance");
         if (other.CompareTag("Player") && !other.isTrigger){
             playerInRange = false;
-            city.GetComponent<Image>().color = new Color(1, 1, 1);
             btn.onClick.RemoveListener(TaskOnClick);
         }
     }

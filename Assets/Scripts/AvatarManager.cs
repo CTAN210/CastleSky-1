@@ -18,7 +18,7 @@ public class AvatarManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("Player Position: "+ Player.transform.position);
         if (characterID.Equals(0) || characterID == 0) {
             string characterName =  CityEntrance.Scenes.getParam("characterName");
             string userName = CityEntrance.Scenes.getParam("userName");
@@ -59,8 +59,9 @@ public class AvatarManager : MonoBehaviour
 
         Debug.Log("Avatar Manager is saying: " + characterID);
         PlayerAnimator.SetInteger("AvatarID", characterID);
+
         var text = usernameText.GetComponent<Text>();
-        text.text = actualuserName ;
+        text.text = actualuserName;
 
     //  int userAvatarID = checkCharacterID();
     //  PlayerAnimator.SetInteger("AvatarID", User.);

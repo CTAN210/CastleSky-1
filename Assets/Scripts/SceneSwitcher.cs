@@ -26,7 +26,9 @@ public class SceneSwitcher : MonoBehaviour
 
     }
 
+
     public void load_next_scene (string scene_name){
+
         
         if (intialiseFlag.Equals(0) || intialiseFlag == 0) {
             characterName = CityEntrance.Scenes.getParam("characterName");
@@ -51,7 +53,14 @@ public class SceneSwitcher : MonoBehaviour
         userDetail.Add("characterName", characterName);
         userDetail.Add("userName", userName);
 
-        CityEntrance.Scenes.Load(scene_name,  userDetail);
+        if (scene_name == "Science World Scene" || scene_name == "Math World Scene"){
+            Debug.Log("Switching Worlds...");
+            CityEntrance.Scenes.Load(scene_name,userDetail,"position", new Vector3(13,10,0));
+
+        } else{
+            CityEntrance.Scenes.Load(scene_name,  userDetail);
+        }
+
         
     }
 
@@ -70,5 +79,6 @@ public class SceneSwitcher : MonoBehaviour
         btn_clicked = btn.name;
         //Debug.Log(btn.name);
     } 
+
 
 }
