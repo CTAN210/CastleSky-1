@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ButtonHandlers : MonoBehaviour
 {
@@ -86,16 +87,22 @@ public class ButtonHandlers : MonoBehaviour
 
     public void shareWhatsapp(GameObject code)
     {
-        accessCodeText = code.GetComponent<TMPro.TextMeshProUGUI>().text;
+        Debug.Log("Im inside share on whatsapp method");
+        accessCodeText = code.GetComponent<Text>().text;
+        Debug.Log("Access Code is: " + accessCodeText);
         var worldText = AccessCodeDropdownHandler.selectedWorldFromAccessCode;
+        Debug.Log("World Txt = " + worldText);
         var countryText = AccessCodeDropdownHandler.selectedCountryFromAccessCode;
-        if (countryText == "Whole Numbers"){
-            Application.OpenURL(System.String.Format("https://wa.me/?text=Dear%20students,%20please%20use%20this%20code%20to%20access%20this%20world%20on%20CastleSky%0aWorld:%20{0}%0aCountry:%20{1}%20{2}%0aCode:%20{3}",worldText,countryText.Split(" "[0])[0],countryText.Split(" "[0])[1],accessCodeText));
-        }
-        else
-        {
-            Application.OpenURL(System.String.Format("https://wa.me/?text=Dear%20students,%20please%20use%20this%20code%20to%20access%20this%20world%20on%20CastleSky%0aWorld:%20{0}%0aCountry:%20{1}%0aCode:%20{2}",worldText,countryText,accessCodeText));
-        }
+        Debug.Log("Country Txt = " + countryText);
+        string sharingURL = string.Format("http://wa.me/?text=Dear%20students,%20please%20use%20this%20code%20to%20access%20this%20world%20on%20CastleSky%0aWorld:%20{0}%0aCountry:%20{1}%20%0aCode:%20{2}",worldText,countryText,accessCodeText);
+        Application.OpenURL(sharingURL);
+        /* if (countryText == "Whole Numbers"){
+             Application.OpenURL(System.String.Format("https://wa.me/?text=Dear%20students,%20please%20use%20this%20code%20to%20access%20this%20world%20on%20CastleSky%0aWorld:%20{0}%0aCountry:%20{1}%20{2}%0aCode:%20{3}",worldText,countryText.Split(' ')[0],countryText.Split(' ')[1],accessCodeText));
+         }
+         else
+         {
+             Application.OpenURL(System.String.Format("https://wa.me/?text=Dear%20students,%20please%20use%20this%20code%20to%20access%20this%20world%20on%20CastleSky%0aWorld:%20{0}%0aCountry:%20{1}%0aCode:%20{2}",worldText,countryText,accessCodeText));
+         }*/
     }
 
     public void openCanvas(GameObject specificCanvas){
