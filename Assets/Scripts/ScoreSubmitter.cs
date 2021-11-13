@@ -10,17 +10,17 @@ public class ScoreSubmitter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Get user id
-        string userId = "32";
-        // Get city id
-        string cityId = "1";
-        // Get Minigame score
-        int score = 200;
+       
+    }
 
+    public void PostScoreToDB(string userId, string cityName, int score)
+    {
+        Debug.Log("Entered Post");
         Dictionary<string, dynamic> registrationForm = new Dictionary<string, dynamic>();
-        registrationForm.Add("cityId", cityId);
+        registrationForm.Add("countryName", cityName);
         registrationForm.Add("userId", userId);
         registrationForm.Add("score", score);
+        Debug.Log("Dictionary made.");
         
         string jsonform = JsonConvert.SerializeObject(registrationForm, Formatting.Indented);
 

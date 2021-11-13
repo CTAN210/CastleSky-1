@@ -27,7 +27,7 @@ public class AddButtons : MonoBehaviour
                 numOfButtons = 12;
                 break;            
             case "3":
-                numOfButtons = 14;
+                numOfButtons = 6;
                 break;
             default:
                 numOfButtons = 6;

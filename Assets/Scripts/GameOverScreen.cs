@@ -8,6 +8,7 @@ public class GameOverScreen : MonoBehaviour
 {
     // Start is called before the first frame update
     public Text guessText;
+    public ScoreSubmitter scoreSubmitter;
 
 
     public void Setup(int userScore)
@@ -16,10 +17,16 @@ public class GameOverScreen : MonoBehaviour
         // Send score to DB if level = 3 
         if (CityEntrance.Scenes.getParam("level") == GameController.finalLevel.ToString()){
             Debug.Log("Final Level- Player Score: " + userScore);
+            
+            string cityName = CityEntrance.Scenes.getParam("cityName");
+            string userId = CityEntrance.Scenes.getParam("userId");
+            scoreSubmitter.PostScoreToDB(userId, cityName, userScore);
+            Debug.Log("Update Successful");
         }
-
-
         guessText.text = userScore.ToString() + " Points";
+
+
+        
     }
 
     public void RestartButton()

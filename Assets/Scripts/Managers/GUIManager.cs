@@ -6,6 +6,7 @@ public class GUIManager : MonoBehaviour {
 	public static GUIManager instance;
 
 	public GameObject gameOverPanel;
+	public ScoreSubmitter scoreSubmitter;
 	public Text yourScoreTxt;
 	public Text highScoreTxt;
 
@@ -75,6 +76,11 @@ public class GUIManager : MonoBehaviour {
 		// Send score to DB if final level
 		if (GameManager.level == GameManager.finalLevel){
             Debug.Log("Final Level- Player Score: " + score);
+			
+			string cityName = CityEntrance.Scenes.getParam("cityName");
+            string userId = CityEntrance.Scenes.getParam("userId");
+            scoreSubmitter.PostScoreToDB(userId, cityName, score);
+            Debug.Log("Update Successful");
         }
 	}
 

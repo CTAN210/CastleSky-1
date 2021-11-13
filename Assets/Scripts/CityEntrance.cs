@@ -14,6 +14,7 @@ public class CityEntrance : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     string buildingName;
     string sceneToLoad;
     string level;
+    string cityName;
     Button btn;
     GameObject city;
 
@@ -50,10 +51,16 @@ public class CityEntrance : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         private static Dictionary<string, string> parameters;
         private static Dictionary<string, Vector3> position;
 
-        public static void Load(string sceneName, Dictionary<string, string> parameters = null, Dictionary<string,Vector3> position = null)
+        public static void Load(string sceneName, Dictionary<string, string> parameters = null)
         {
             Scenes.parameters = parameters;
-            Scenes.position = position;
+            SceneManager.LoadScene(sceneName);
+        }        
+        public static void Load(string sceneName, Dictionary<string, string> parameters , string positionKey , Vector3 positionValue)
+        {
+            Scenes.parameters = parameters;
+            Scenes.position = new Dictionary<string, Vector3>();
+            Scenes.position.Add(positionKey, positionValue);
             SceneManager.LoadScene(sceneName);
         }
 
@@ -111,88 +118,112 @@ public class CityEntrance : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
             case "Geometry_1":
                 sceneToLoad = "MatchingPairGameScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "Geometry_2":
                 sceneToLoad = "MatchingPairGameScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "Geometry_3":
                 sceneToLoad = "MatchingPairGameScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "WholeNumbers_1":
                 sceneToLoad = "MathManiacScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "WholeNumbers_2":
                 sceneToLoad = "MathManiacScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;            
                 
             case "WholeNumbers_3":
                 sceneToLoad = "MathManiacScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "WholeNumbers_4":
                 sceneToLoad = "MathManiacScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;            
                 
             case "WholeNumbers_5":
                 sceneToLoad = "MathManiacScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "WholeNumbers_6":
                 sceneToLoad = "MathManiacScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;            
                 
             case "WholeNumbers_7":
                 sceneToLoad = "MathManiacScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "WholeNumbers_8":
                 sceneToLoad = "MathManiacScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "WholeNumbers_9":
                 sceneToLoad = "MathManiacScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "WholeNumbers_10":
                 sceneToLoad = "MathManiacScene";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "Species_1":
                 sceneToLoad = "MatchMeMenu";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "Species_2":
                 sceneToLoad = "MatchMeMenu";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
             case "Species_3":
                 sceneToLoad = "MatchMeMenu";
+                cityName = buildingName.Split('_')[0]; 
                 level = buildingName.Split('_')[1];
                 break;
 
         }
         // SceneManager.LoadScene(sceneToLoad);
+        if (cityName == "WholeNumbers"){
+            cityName = "Whole Numbers";
+        }
         Vector3 myvector = Player.transform.position;
-        Scenes.Load(sceneToLoad, "level", level, "position", myvector);
+        Dictionary<string, string> userDetails = new Dictionary<string, string>{};
+        userDetails.Add("userId", SceneSwitcher.userId);
+        userDetails.Add("level", level);
+        userDetails.Add("cityName",cityName);
+
+        Scenes.Load(sceneToLoad, userDetails, "position", myvector);
 	}
 
     void OnTriggerEnter2D (Collider2D other)
