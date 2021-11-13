@@ -4,22 +4,23 @@ using UnityEngine;
 using System.Threading.Tasks;
 using System;
 
-public class AccessCodeGenerated
+public class LeaderboardResultsGenerator
 {
-    string accessCode { get; set; }
+    public string UserName { get; set; }
+    public int Score{ get; set; }
 
-     public static async Task<string[]> loadFromDB()
+     public static async Task<LeaderboardResultsGenerator[]> loadFromDB()
      {
         var url = "";
-        if (AccessCodeDropdownHandler.selectedCountryFromAccessCode == "Whole Numbers")
+        if (LeaderBoardHandler.selectedCountryFromLeaderboard == "Whole Numbers")
         {
-            url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getAccessCode/Whole_Numbers";
+            url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getLeaderBoardByCountry/Whole_Numbers";
         }
         else
         {
-            url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getAccessCode/" + AccessCodeDropdownHandler.selectedCountryFromAccessCode;
+            url = "http://ec2-3-138-111-170.us-east-2.compute.amazonaws.com:3333/getLeaderBoardByCountry/" + LeaderBoardHandler.selectedCountryFromLeaderboard;
         }
-
+        
         using var www = UnityWebRequest.Get(url);
         www.SetRequestHeader("Content-Type", "application/json");
 
@@ -36,7 +37,7 @@ public class AccessCodeGenerated
         }
 
         try {
-            var result = JsonConvert.DeserializeObject<string[]>(jsonResponse);
+            var result = JsonConvert.DeserializeObject<LeaderboardResultsGenerator[]>(jsonResponse);
             Debug.Log($"Success: {www.downloadHandler.text}");
             return result;
         } catch(Exception e) {
