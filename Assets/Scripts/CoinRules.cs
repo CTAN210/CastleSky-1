@@ -55,7 +55,7 @@ public class CoinRules : MonoBehaviour
 
     public async void CoinSpawner()
     {   
-        level = Int32.Parse(CityEntrance.Scenes.getParam("level"));ddddd
+        level = Int32.Parse(CityEntrance.Scenes.getParam("level"));
         Debug.Log("Level: "+ level);
         if (level == 10){
             levelHolder.GetComponent<TextMeshPro>().text = "Final Level" ; // Displays Final level 
