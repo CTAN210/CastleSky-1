@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +10,7 @@ public class ButtonHandlers : MonoBehaviour
     public static GameObject accessCode;
     public static GameObject socialMediaPopup;
     public GameObject summaryReportCanvas;
+    public GameObject exportPopup;
     public static string accessCodeText;
     // Start is called before the first frame update
     void Start()
@@ -46,10 +46,19 @@ public class ButtonHandlers : MonoBehaviour
         summaryReportPopup.SetActive(true);
     }
 
-    public void exportPNG()
+    public void exportPNG(Text Message)
     {
-        
-        ScreenCapture.CaptureScreenshot(Application.dataPath + "/screenshots/" + "summary_report" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".png");
+        string path = Application.dataPath + "/Screenshots/";
+        if (!System.IO.Directory.Exists(path))
+             System.IO.Directory.CreateDirectory(path);
+        ScreenCapture.CaptureScreenshot(path + "summary_report_" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".png");
+        Message.text = "Saved to " + path.ToString();
+        exportPopup.SetActive(true);
+    }
+
+    public void closeExportPopup()
+    {
+        exportPopup.SetActive(false);
     }
 
     public void generateButtonClicked(string scene_name)

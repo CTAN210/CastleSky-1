@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Login Scene.unity
+    guid: 7438a51392292f4418a8c88e8ec207ab
+  - enabled: 1
     path: Assets/Scenes/MatchingPairGameScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -20,9 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Old Science World Scene.unity
     guid: d83df9f9dd3c24c4eb2b8e5fba05cb4f
-  - enabled: 1
-    path: Assets/Scenes/Login Scene.unity
-    guid: 7438a51392292f4418a8c88e8ec207ab
   - enabled: 1
     path: Assets/Scenes/Register Scene.unity
     guid: 4f3b1e95747dbf74780814dc9651d087
