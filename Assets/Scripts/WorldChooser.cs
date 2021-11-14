@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class WorldChooser : MonoBehaviour
 {
-    public GameObject DialogueBox;
-    public GameObject Player;
 
+    public GameObject Dialoguebox;
+    public GameObject Player;
     public void OpenDialogueBox() 
     {
         try
         {
-        DialogueBox.transform.position = Player.transform.position;
-        
-        DialogueBox.transform.position = DialogueBox.transform.position + new Vector3(3,3,0);
-
-        //animator.SetBool("IsOpen", true);
-        
-        Debug.Log(DialogueBox.transform.position);
+            Dialoguebox.SetActive(true);
+            if (Player != null){
+                Dialoguebox.transform.position = Player.transform.position + new Vector3(3,3,0);
+            }
         }
         catch (System.Exception)
         {   
@@ -27,8 +24,8 @@ public class WorldChooser : MonoBehaviour
 
     public void CloseDialogueBox() 
     {
+        Dialoguebox.SetActive(false);
         //animator.SetBool("IsOpen", false);
-        DialogueBox.transform.position = DialogueBox.transform.position + new Vector3(3000,0,0);
     }
 
 }

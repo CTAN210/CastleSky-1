@@ -5,11 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
-    public static bool isGamePaused = false;
+    public static bool isGamePaused;
     public GameObject Player;
     [SerializeField] GameObject pauseMenu;
 
-
+    void Start() {
+        isGamePaused = false;
+        Time.timeScale = 1f;
+    }
+    
     void Update()
     {
         //if 'esc' pressed
@@ -39,7 +43,10 @@ public class Pause : MonoBehaviour
     }
 
     public void load_next_scene (string scene_name){
-        SceneManager.LoadScene(scene_name);
         Time.timeScale = 1f;
+        ResumeGame();
+        SceneManager.LoadScene(scene_name);
     }
+
+    
 }
