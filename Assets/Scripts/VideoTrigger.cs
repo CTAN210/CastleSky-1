@@ -10,6 +10,7 @@ public class VideoTrigger : MonoBehaviour
     public GameObject VideoPlayer;
     public GameObject VideoNPC;
     public GameObject Player;
+    //public GameObject decorations;
 
     public void OpenVideo(){
         try
@@ -27,6 +28,9 @@ public class VideoTrigger : MonoBehaviour
             Player.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
 
             VideoNPC.SetActive(false);
+
+            var decorations = GameObject.Find("Decoration");
+            decorations.SetActive(false);
 
             Time.timeScale = 0;
         }
@@ -54,6 +58,9 @@ public class VideoTrigger : MonoBehaviour
             Player.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
 
             VideoNPC.SetActive(true);
+
+            var decorations = GameObject.Find("Grid").transform.Find("Decoration").gameObject;
+            decorations.SetActive(true);
         }
         catch (System.Exception)
         {
