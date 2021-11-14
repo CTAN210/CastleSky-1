@@ -96,6 +96,7 @@ public class LeaderBoardHandler : MonoBehaviour
     public void OpenLeaderboard(){ 
         Time.timeScale = 0;
         if (player != null ) {
+            LeaderboardInput.transform.position = player.transform.position;
             player.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
         }
         LeaderboardInput.SetActive(true);
@@ -110,6 +111,7 @@ public class LeaderBoardHandler : MonoBehaviour
 
     public void OpenLeaderboardActual(){
         LeaderboardInput.SetActive(false);
+        LeaderboardActual.transform.position = player.transform.position;
         LeaderboardActual.SetActive(true);
     }
 

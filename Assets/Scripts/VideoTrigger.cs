@@ -13,10 +13,10 @@ public class VideoTrigger : MonoBehaviour
     //public GameObject decorations;
 
     public void OpenVideo(){
-        try
-        {
+        
+        
             //VideoBox.transform.position = new Vector3(0,0,0);
-
+            GameObject.FindGameObjectWithTag("Background Song").GetComponent<AudioSource>().mute = true;
             VideoBox.transform.position = Player.transform.position;
 
             Debug.Log(VideoBox.transform.position);
@@ -33,20 +33,12 @@ public class VideoTrigger : MonoBehaviour
             decorations.SetActive(false);
 
             Time.timeScale = 0;
-        }
-        catch (System.Exception)
-        {
-            
-            throw;
-        }
+        
     }
 
     public void CloseVideo(){
-        try
-        {
-            
-
-
+        
+            GameObject.FindGameObjectWithTag("Background Song").GetComponent<AudioSource>().mute = false;
              VideoBox.transform.position = VideoBox.transform.position + new Vector3(3000,0,0);
 
              var videoPlayer = VideoPlayer.GetComponent<VideoPlayer>();
@@ -61,11 +53,5 @@ public class VideoTrigger : MonoBehaviour
 
             var decorations = GameObject.Find("Grid").transform.Find("Decoration").gameObject;
             decorations.SetActive(true);
-        }
-        catch (System.Exception)
-        {
-            
-            throw;
-        }
     }
 }

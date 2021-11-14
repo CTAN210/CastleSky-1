@@ -31,7 +31,7 @@ public class UserWorldsLoader : MonoBehaviour
         if (actualuserclassId.Equals(0))
         {
             actualuserclassId = Int32.Parse(CityEntrance.Scenes.getParam("userId"));
-            Debug.Log("User's Class is : " + actualuserclassId);
+            Debug.Log("User's id is : " + actualuserclassId);
             string[] userWorlds = await UserWorlds.loadUserWorlds(actualuserclassId);
 
             foreach(string world in userWorlds) {
