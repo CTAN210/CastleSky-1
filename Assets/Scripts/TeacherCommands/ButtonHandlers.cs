@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class ButtonHandlers : MonoBehaviour
 {
@@ -47,7 +48,8 @@ public class ButtonHandlers : MonoBehaviour
 
     public void exportPNG()
     {
-        ScreenCapture.CaptureScreenshot("UnityScreenshot.png");
+        
+        ScreenCapture.CaptureScreenshot(Application.dataPath + "/screenshots/" + "summary_report" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".png");
     }
 
     public void generateButtonClicked(string scene_name)
