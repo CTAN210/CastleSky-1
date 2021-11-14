@@ -129,4 +129,8 @@ public class ButtonHandlers : MonoBehaviour
         specificCanvas.SetActive(false);
     }
 
+     public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

@@ -47,9 +47,4 @@ public class LoginValidator : MonoBehaviour
             emailError.text = "Please enter an email.";
         }
     }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
 }

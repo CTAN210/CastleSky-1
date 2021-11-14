@@ -29,20 +29,24 @@ public class CountyEntranceManager : MonoBehaviour
 
 
     void Start()
-    {
+    {  
+        Debug.Log("Geom STart status: "+ geometryAccessStatus);
         if (geometryAccessStatus == true){
             // animator_guard.SetBool("IsOpen",false);
             geometry_guard.SetActive(false);
+            
         }
-
+        Debug.Log("Whole STart status: "+ wholenumberAccessStatus);
         if (wholenumberAccessStatus == true){
             // animator_guard.SetBool("IsOpen",false);
             wholenumber_guard.SetActive(false);
+           
         }
-
+        Debug.Log("Species STart status: "+ speciesAccessStatus);
         if (speciesAccessStatus == true){
             // animator_guard.SetBool("IsOpen",false);
             species_guard.SetActive(false);
+            
         }
 
 
@@ -171,18 +175,21 @@ public class CountyEntranceManager : MonoBehaviour
             //  animator_guard.SetBool("IsOpen",false);\\
             Debug.Log("in close country guard");
 
-            specificGuard.SetActive(false);
+            // specificGuard.SetActive(false);
             if (specificGuard == geometry_guard){  
                 geometryAccessStatus = true;
                 specificGuard.SetActive(false);
+                Debug.Log("Access Status:" + geometryAccessStatus);
             }
-            else if (specificGuard == wholenumber_guard){
+            if (specificGuard == wholenumber_guard){
                 wholenumberAccessStatus = true;
                 specificGuard.SetActive(false);
+                Debug.Log("Access Status:" + wholenumberAccessStatus);
             }
-            else if (specificGuard == species_guard){
+            if (specificGuard == species_guard){
                 speciesAccessStatus = true;
                 specificGuard.SetActive(false);
+                Debug.Log("Access Status:" + speciesAccessStatus);
             }
         }
         catch (System.Exception)
