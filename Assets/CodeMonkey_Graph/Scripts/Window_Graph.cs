@@ -36,12 +36,13 @@ public class Window_Graph : MonoBehaviour {
     private int maxVisibleValueAmount;
     private Func<int, string> getAxisLabelX;
     private Func<float, string> getAxisLabelY;
+    public Text classTexBox;
 
     private async Task Awake() {
         instance = this;
 
-        
-        textBox = GameObject.Find("textBox").GetComponent<TMPro.TMP_Text>();
+        classTexBox.text = "Class " + SummaryDropdownHandler.summaryReportInputClass;
+        // textBox = GameObject.Find("textBox").GetComponent<TMPro.TMP_Text>();
 
         worldDropdown = GameObject.Find("dropdown-world").GetComponentInChildren<TMPro.TMP_Dropdown>();
         worldDropdown.options.Clear();

@@ -56,6 +56,11 @@ public class ButtonHandlers : MonoBehaviour
         SceneManager.LoadScene(scene_name);
     }
 
+    // public void NavigateToSummaryReportWithClass(Te)
+    // {
+    //     Dictionary<string,string>
+    // }
+
     public void backToCommandFromSummaryReport()
     {
         SceneManager.LoadScene("Teacher Commands Scene");
